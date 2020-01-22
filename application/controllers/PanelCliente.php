@@ -274,7 +274,7 @@ class PanelCliente extends CI_Controller {
 
 			if ($this->upload->do_upload($mi_imagen)) {
 			   $file_ext = $this->upload->data('file_ext');
-				 $urlComprobante = "uploads/pagosComprobantes/$folioCotizacion$file_ext";
+				 $urlComprobante = base_url()."uploads/pagosComprobantes/$folioCotizacion$file_ext";
 			   $verificacionDePago = $this->PerfilCliente->pagoCorizacionComprobante($id,$folioCotizacion, $urlComprobante);
 				 if ($verificacionDePago) {
 				 	echo "echo";

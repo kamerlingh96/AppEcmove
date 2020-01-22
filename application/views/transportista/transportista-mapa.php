@@ -10,79 +10,141 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/styles/framework.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/fonts/css/fontawesome-all.min.css">
 <!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
-<link rel="manifest" href="_manifest.json" data-pwa-version="set_by_pwa.js">
-<link rel="apple-touch-icon" sizes="180x180" href="<?= base_url()?>estilos/app/icons/icon-192x192.png">
+
+<style media="screen">
+  #map{
+    height: 620px;
+    width: 100%;
+  }
+</style>
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9pK_ZAsjpURG7WHpwIDoipu00zcZNciA&callback=initMap"></script>
+
+<script type="text/javascript">
+  function initMap() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7
+    });
+    directionsRenderer.setMap(map);
+
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    directionsService.route(
+        {
+          origin:  coordsInicio,
+          destination:  coordsFin,
+          travelMode: 'DRIVING'
+        },
+        function(response, status) {
+          if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+  }
+</script>
+
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="red2">
 
-
 <div id="page">
-  <script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
-  </script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
 
-
-  <script type="text/javascript">
-  function ejecutarAcceder(e){
-    document.loginform.submit();
-  }
-  </script>
     <div id="page-preloader">
         <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
     </div>
 
-	<div class="header header-fixed header-logo-center">
-        <a href="index.html" class="header-title">ECMOVE</a>
-		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+    <?php
+      function obtenerFecha($mes = ''){
+        switch ($mes) {
+          case '01':
+            return "Enero";
+            break;
+          case '02':
+            return "Febrero";
+            break;
+          case '03':
+            return "Marzo";
+            break;
+          case '04':
+            return "Abril";
+            break;
+          case '05':
+            return "Mayo";
+            break;
+          case '06':
+            return "Junio";
+            break;
+          case '07':
+            return "Julio";
+            break;
+          case '08':
+            return "Agosto";
+            break;
+          case '09':
+            return "Septiembre";
+            break;
+          case '10':
+            return "Octubre";
+            break;
+          case '11':
+            return "Noviembre";
+            break;
+          case '12':
+            return "Diciembre";
+            break;
 
+          default:
+            return "0";
+            break;
+        }
+      }
+    ?>
+
+	<div class="header header-fixed header-logo-center">
+        <a href="#" class="header-title">ECMOVE</a>
+		<a href="" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
 	</div>
 
 
+    <div class="page-content header-clear-large">
 
-    <div class="page-content header-clear-medium">
+
+          <?php foreach ($listaDeEmbarques->result() as $embarque): ?>
+            <?php if ($embarque->id == $idEmbarque): ?>
+              <?php foreach ($listaDeInicioFin->result() as $inicioFin): ?>
+                <?php if ($inicioFin->id_embarque == $embarque->id): ?>
 
 
-        <div class="content-boxed left-40 right-40">
-            <div class="content top-10 bottom-20">
-              <form class="" role="form" action="<?= base_url()?>Login/log" method="POST" name="loginform">
-                <h1 class="center-text uppercase ultrabold fa-3x">INICIAR</h1>
-                <p class="center-text font-11 under-heading bottom-30 color-highlight">
-                    Vinculamos tus cargas
-                </p>
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-user font-11"></i>
-                    <span>Correo</span>
+                          <script type="text/javascript">
+                            var coordsInicio = '<?php echo $inicioFin->coordsInicio;?>';
+                            var coordsFin = '<?php echo $inicioFin->coordsFin;?>';
+                          </script>
 
-                    <input type="email" placeholder="Correo" name="email" value="erik@gmail.com">
-                </div>
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-lock font-11"></i>
-                    <span>Contraseña</span>
+                          <div class="map-full">
+                  			       <div id="map"></div>
+                                <div class="caption-center" style="top:80% !important">
+                                  <a href="javascript:location.reload()" class="button button-m button-center-medium bg-highlight button-round-small">Actualizar</a>
+                                </div>
+                          </div>
 
-                    <input type="password" placeholder="Contraseña" name="pass" value="1234">
-                </div>
-                <div class="clear"></div>
-                <a href="#" onclick="ejecutarAcceder(event)" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">ACCEDER</a>
-                <div class="divider top-30"></div>
 
-                <p class="center-text font-11 under-heading bottom-30 color-highlight">
-                    Crear una cuenta
-                </p>
-              <a href="<?= base_url()?>Register/registroCliente" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">CLIENTE</a>
-              <a href="<?= base_url()?>Register/registroTransportista" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">TRANSPORTISTA</a>
-                <div class="divider bottom-15"></div>
 
-                <div class="one-half last-column">
-                    <a href="reestablecer.html" class="text-right font-11 color-theme opacity-50">¿Olvidaste tu contraseña?</a>
-                </div>
-                <div class="clear"></div>
-              </form>
-            </div>
-        </div>
+
+
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          <?php endforeach; ?>
+
 
     </div>
     <!-- Page Content Class Ends Here-->

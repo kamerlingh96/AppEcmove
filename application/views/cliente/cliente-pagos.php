@@ -189,8 +189,8 @@
                         <?=$paquete->descripcionPaquete?>
                     </p>
                     <div class="divider top-10 bottom-10"></div>
-                    <div class="one-half">
-                        <a href="<?=base_url()?>PanelCliente/Embarques/cotizacion/<?=$embarque->id?>" class="button button-s round-small shadow-huge button-full bg-green1-dark">PAGAR</a>
+                    <div class="one-half"  >
+                        <a href="<?=base_url()?>PanelCliente/Embarques/cotizacion/<?=$embarque->id?>" style="<?php if($embarque->estadoFacturacion == 'Procesando Pago'){echo 'display: contents;';} ?>" class="button button-s round-small shadow-huge button-full bg-green1-dark">PAGAR</a>
 
                     </div>
                     <div class="one-half last-column">

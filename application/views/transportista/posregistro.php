@@ -1,412 +1,269 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="es">
-
-
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url()?>uploads/sistema/favicon.png">
-    <title>Posregistro</title>
-    <!-- Custom CSS -->
-    <link href="<?= base_url()?>estilos/dist/css/style.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>estilos/assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>ECMOVE</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/styles/style.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/styles/framework.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/fonts/css/fontawesome-all.min.css">
+<!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_by_pwa.js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
 
-<body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
+<body class="theme-light" data-background="none" data-highlight="red2">
+
+<div id="page">
+
+
+
+
+
+  <script type="text/javascript">
+    var base_url = "<?php echo base_url(); ?>";
+  </script>
+  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
+  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
+  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
+  <script src="<?= base_url()?>estilos/sistema/js/posregistro-transportista.js"></script>
+  <script type="text/javascript">
+
+  setTimeout(function () {
+    // Obtener referencia al input y a la imagen
+
+    const $seleccionArchivos = document.querySelector("#seleccionArchivos"),
+    $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+    // Escuchar cuando cambie
+    $seleccionArchivos.addEventListener("change", () => {
+    // Los archivos seleccionados, pueden ser muchos o uno
+    document.getElementById("btnEnviarComprobante").style.display=""
+    const archivos = $seleccionArchivos.files;
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!archivos || !archivos.length) {
+      $imagenPrevisualizacion.src = "";
+      return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    const primerArchivo = archivos[0];
+    // Lo convertimos a un objeto de tipo objectURL
+    const objectURL = URL.createObjectURL(primerArchivo);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    $imagenPrevisualizacion.src = objectURL;
+    });
+  }, 500);
+
+  </script>
+    <div id="page-preloader">
+        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
+    </div>
+
+	<div class="header header-fixed header-logo-center">
+        <a href="index.html" class="header-title">ECMOVE</a>
+		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+
+	</div>
+
+
+
+    <div class="page-content header-clear-medium">
+
+
+        <div class="content-boxed left-40 right-40">
+            <div class="content top-10 bottom-20">
+              <form class="" novalidate action="<?= base_url()?>PanelTransportista/posregistro" method="post" id="transportista" enctype="multipart/form-data">
+                <h3 class="center-text uppercase ultrabold fa-2x">Bienvenido <?= $datosUsuario->user ?></h3>
+                <p class="center-text font-11 under-heading bottom-30 color-highlight" style="line-height: 15px !important; ">
+                    Nos alegra que te unas a nuestro grupo de ECMOVE, antes de iniciar es necesario que rellenes unos campos para completar tu información
+                </p>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-user font-11"></i>
+                    <span>Nombre</span>
+
+                    <input type="text" placeholder="Nombre" name="nombre" value="<?= $datosUsuario->user ?>">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-id-card font-11"></i>
+                    <span>CURP</span>
+
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="CURP" name="curp" maxlength="18" value="<?= $perfil->curp ?>">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-at"></i>
+                    <span>Correo</span>
+
+                    <input type="email" placeholder="Correo" name="correo" value="<?= $perfil->correo ?>">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-phone"></i>
+                    <span>Celular</span>
+
+                    <input type="tel" placeholder="Celular" name="tel" value="<?= $perfil->tel ?>">
+                </div>
+
+
+                <div class="input-style input-style-1 input-required">
+                    <span>Selecciona el vehiculo</span>
+                    <em><i class="fa fa-angle-down"></i></em>
+                    <select name="vehiculo">
+                        <option value="default" disabled selected>Selecciona el vehiculo</option>
+                        <?php
+                        foreach ($ListaDeVehiculos->result() as $vehiculo) {
+                          ?>
+                          <option value="<?=$vehiculo->id?>"><?=$vehiculo->vehiculo?></option>
+                          <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="file-data">
+                  <input type="file" class="upload-file button bg-highlight button-full shadow-huge round-small button-xs " accept="image/*" id="seleccionArchivos" name="dropzoneComprobante">
+                  <p class="upload-file-text">Seleccionar</p>
+                  <img src="<?= base_url()?>estilos/images/empty.png">
+                </div>
+                <div class="" style="text-align:center;">
+                  <img id="imagenPrevisualizacion" style="height:40%;width:40%;display:inline-block;">
+                </div>
+                <div class="divider top-30"></div>
+                <div class="clear"></div>
+                <a href="#" id="btnEnviarComprobante" onclick="ejecutarPosRegistro(event)" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">Guardar</a>
+
+                <a href="<?= base_url()?>Login/logout" class="button button-full button-m shadow-large button-round-small bg-red1-dark top-30 bottom-0">Cancelar</a>
+
+
+                <div class="clear"></div>
+              </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- Page Content Class Ends Here-->
+
+    <!--Menu Settings-->
+    <div id="menu-settings" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="310" data-menu-effect="menu-over">
+        <div class="content bottom-0">
+            <div class="menu-title"><h1>Settings</h1><p class="color-highlight">Flexible and Easy to Use</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+            <div class="divider bottom-20"></div>
+            <div class="toggle-with-icon">
+                <i class="toggle-icon round-tiny fa fa-moon bg-red2-dark color-white"></i>
+                <a href="#" class="toggle-switch toggle-ios toggle-off"
+                   data-toggle-theme
+                   data-toggle-height="27"
+                   data-toggle-width="50"
+                   data-toggle-content="toggle-content-1"
+                   data-toggle-checkbox="toggle-checkbox-1"
+                   data-bg-on="bg-green1-dark"
+                   data-bg-off="">
+                    <span class="color-theme regularbold font-13">Dark Mode</span>
+                    <strong></strong>
+                    <u></u>
+                </a>
+            </div>
+            <div class="divider top-25 bottom-0"></div>
+            <div class="link-list link-list-2 link-list-long-border">
+                <a href="#" data-menu="menu-highlights">
+                    <i class="fa fa-tint bg-green1-dark color-white round-tiny"></i>
+                    <span>Page Highlight</span>
+                    <strong>16 Color Highlights Included</strong>
+                    <em class="bg-highlight">HOT</em>
+                </a>
+                <a href="#" data-menu="menu-backgrounds" class="no-border">
+                    <i class="fa fa-brush bg-blue2-dark color-white round-tiny"></i>
+                    <span>Page Background</span>
+                    <strong>10 Page Gradients Included</strong>
+                    <em class="bg-highlight">NEW</em>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!--Menu Settings Highlights-->
+    <div id="menu-highlights" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="380" data-menu-effect="menu-over">
+        <div class="content bottom-0">
+            <div class="menu-title"><h1>Highlights</h1><p class="color-highlight">Any Element can have a Highlight Color</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+            <div class="divider bottom-0"></div>
+            <div class="highlight-changer bottom-30">
+                <a href="#" data-change-highlight="blue2"><i class="fa fa-circle color-blue2-dark"></i><span class="color-blue2-light">Default</span></a>
+                <a href="#" data-change-highlight="red1"><i class="fa fa-circle color-red1-dark"></i><span class="color-red2-light">Red</span></a>
+                <a href="#" data-change-highlight="orange"><i class="fa fa-circle color-orange-dark"></i><span class="color-orange-light">Orange</span></a>
+                <a href="#" data-change-highlight="pink2"><i class="fa fa-circle color-pink2-dark"></i><span class="color-pink2-light">Pink</span></a>
+                <a href="#" data-change-highlight="magenta2"><i class="fa fa-circle color-magenta2-dark"></i><span class="color-magenta2-light">Purple</span></a>
+                <a href="#" data-change-highlight="aqua"><i class="fa fa-circle color-aqua-dark"></i><span class="color-aqua-light">Aqua</span></a>
+                <a href="#" data-change-highlight="teal"><i class="fa fa-circle color-teal-dark"></i><span class="color-teal-light">Teal</span></a>
+                <a href="#" data-change-highlight="mint"><i class="fa fa-circle color-mint-dark"></i><span class="color-mint-light">Mint</span></a>
+                <a href="#" data-change-highlight="green2"><i class="fa fa-circle color-green2-dark"></i><span class="color-green2-light">Green</span></a>
+                <a href="#" data-change-highlight="green1"><i class="fa fa-circle color-green1-dark"></i><span class="color-green1-light">Grass</span></a>
+                <a href="#" data-change-highlight="yellow2"><i class="fa fa-circle color-yellow2-dark"></i><span class="color-yellow2-light">Sunny</span></a>
+                <a href="#" data-change-highlight="yellow1"><i class="fa fa-circle color-yellow1-dark"></i><span class="color-yellow1-light">Goldish</span></a>
+                <a href="#" data-change-highlight="brown1"><i class="fa fa-circle color-brown1-dark"></i><span class="color-brown1-light">Wood</span></a>
+                <a href="#" data-change-highlight="dark1"><i class="fa fa-circle color-dark1-dark"></i><span class="color-dark1-light">Night</span></a>
+                <a href="#" data-change-highlight="dark2"><i class="fa fa-circle color-dark2-dark"></i><span class="color-dark2-light">Dark</span></a>
+                <div class="clear"></div>
+            </div>
+            <a href="#" data-menu="menu-settings" class="button button-s button-full button-m button-round-large bg-highlight shadow-large">Back to Settings</a>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url()?>">
-                        <!-- Logo icon -->
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                             <!-- dark Logo text -->
-                             <img src="<?= base_url()?>uploads/sistema/logo.png" alt="homepage" class="dark-logo" width="200"/>
-                             <!-- Light Logo text -->
-                             <img src="<?= base_url()?>uploads/sistema/logo.png" class="light-logo" alt="homepage" width="200" />
-                        </span>
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Toggle which is visible on mobile only -->
-                    <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto">
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url()?>estilos/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <span class="with-arrow"><span class="bg-primary"></span></span>
-                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
-                                    <div class=""><img src="<?= base_url()?>estilos/assets/images/users/1.jpg" alt="user" class="img-circle" width="60"></div>
-                                    <div class="m-l-10">
-                                        <h4 class="m-b-0"><?= $datosTransportista['user'] ?></h4>
-                                        <p class=" m-b-0"><?= $datosTransportista['email'] ?></p>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item" href="<?= base_url()?>Login/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar Sesión</a>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li>
-                            <!-- User Profile-->
-                            <div class="user-profile d-flex no-block dropdown m-t-20">
-                                <div class="user-pic"><img src="<?= base_url()?>estilos/assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
-                                <div class="user-content hide-menu m-l-10">
-                                    <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium"><?= $datosTransportista['user'] ?> <i class="fa fa-angle-down"></i></h5>
-                                        <span class="op-5 user-email"><?= $datosTransportista['email'] ?></span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="<?= base_url()?>Login/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar Sesión</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End User Profile-->
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
+    <!-- Menu Settings Backgrounds-->
+    <div id="menu-backgrounds" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="310" data-menu-effect="menu-over">
+        <div class="content">
+            <div class="menu-title"><h1>Backgrounds</h1><p class="color-highlight">Change Page Color Behind Content Boxes</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+            <div class="divider bottom-0"></div>
+            <div class="background-changer bottom-30">
+                <a href="#" data-change-background="none"><i class="bg-theme"></i><span>Default</span></a>
+                <a href="#" data-change-background="plum"><i class="body-plum"></i><span class="color-plum-dark">Plum</span></a>
+                <a href="#" data-change-background="magenta3"><i class="body-magenta3"></i><span class="color-magenta3-dark">Magenta</span></a>
+                <a href="#" data-change-background="dark3"><i class="body-dark3"></i><span class="color-dark3-dark">Dark</span></a>
+                <a href="#" data-change-background="violet"><i class="body-violet"></i><span class="color-violet-dark">Violet</span></a>
+                <a href="#" data-change-background="red3"><i class="body-red3"></i><span class="color-red3-dark">Red</span></a>
+                <a href="#" data-change-background="green3"><i class="body-green3"></i><span class="color-green3-dark">Green</span></a>
+                <a href="#" data-change-background="sky"><i class="body-sky"></i><span class="color-sky-dark">Sky</span></a>
+                <a href="#" data-change-background="pumpkin"><i class="body-pumpkin"></i><span class="color-pumpkin-dark">Orange</span></a>
+                <a href="#" data-change-background="yellow3"><i class="body-yellow3"></i><span class="color-yellow3-dark">Yellow</span></a>
+                <div class="clear"></div>
             </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card" id="posregistro">
-                            <div class="card-body">
-                                <h3 class="text-center">Bienvenido <?= $datosUsuario->user ?></h3>
-                                <h5 class="text-center">Nos alegra que te unas a nuestro grupo de ECMOVE, antes de iniciar es necesario que rellenes unos campos para completar tu información</h5>
-                            </div>
-                            <div class="row button-group">
-                              <div class="col-md-4" style="padding:20px;">
-                              </div>
-                              <div class="col-md-4 center" style="padding:20px;">
-                                  <button type="button" class="btn btn-rounded btn-block btn-info" onclick="posregistro()"><span style="font-size:18px;">Iniciar</span></button>
-                              </div>
-                            </div>
-
-                        </div>
-                        <div class="card" style="display:none;" id="formposregistro">
-                          <div class="card-body">
-                            <h3 class="text-center">Bienvenido <?= $datosTransportista['user'] ?></h3>
-                            <h5 class="text-center">Nos alegra que te unas a nuestro grupo de ECMOVE, antes de iniciar es necesario que rellenes unos campos para completar tu información</h5>
-                          </div>
-                          <form class="needs-validation" novalidate action="<?= base_url()?>PanelTransportista/posregistro" method="post" id="transportista" enctype="multipart/form-data">
-                              <div class="card-body">
-                                  <h4 class="card-title">Información del Transportista</h4>
-                              </div>
-                              <hr>
-                              <div class="form-body">
-                                  <div class="card-body">
-                                      <div class="row p-t-20">
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label class="control-label">Nombre Completo</label>
-                                                  <input type="text" id="" class="form-control" placeholder="" required name="nombre" value="<?= $datosUsuario->user ?>">
-                                                  <div class="valid-feedback">
-                                                    ¡Bien!
-                                                  </div>
-                                                  <div class="invalid-feedback">
-                                                    Dato requerido
-                                                  </div>
-                                                </div>
-                                          </div>
-                                          <!--/span-->
-                                          <div class="col-md-6">
-                                              <div class="form-group has-danger">
-                                                  <label class="control-label">CURP</label>
-                                                  <input type="text" id="" class="form-control form-control-danger" placeholder="" required value="<?= $perfil->curp ?>" name="curp">
-                                                  <div class="valid-feedback">
-                                                    ¡Bien!
-                                                  </div>
-                                                  <div class="invalid-feedback">
-                                                    Dato requerido
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <!--/span-->
-                                      </div>
-                                      <!--/row-->
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                            <div class="form-group">
-                                              <label class="control-label">Correo</label>
-                                              <input type="email" id="" class="form-control" placeholder="info@ejemplo.com" required value="<?= $perfil->correo ?>" name="correo">
-                                              <div class="valid-feedback">
-                                                ¡Bien!
-                                              </div>
-                                              <div class="invalid-feedback">
-                                                Dato requerido
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <!--/span-->
-                                          <div class="col-md-6">
-                                            <div class="form-group">
-                                              <label class="control-label">Celular</label>
-                                              <input type="tel" id="" class="form-control" placeholder="9123456789" required name="tel">
-                                              <div class="valid-feedback">
-                                                ¡Bien!
-                                              </div>
-                                              <div class="invalid-feedback">
-                                                Dato requerido
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <!--/span-->
-                                      </div>
-                                      <!--/row-->
-                                      <div class="row">
-                                          <!--/span-->
-                                          <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Foto Personal</label>
-                                                <input type="file" class="form-control" name="personal" required>
-                                                <div class="valid-feedback">
-                                                  ¡Bien!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                  Dato requerido
-                                                </div>
-                                            </div>
-                                          </div>
-                                          <!--/span-->
-                                      </div>
-                                      <!--/row-->
-                                      <h4 class="card-title m-t-40">Vehiculo</h4>
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                            <div class="form-group">
-                                              <select class="form-control custom-select" required name="vehiculo">
-                                                <option value="">--Selecciona el vehiculo--</option>
-                                                <?php
-                                                foreach ($ListaDeVehiculos->result() as $vehiculo) {
-                                                  ?>
-                                                  <option value="<?=$vehiculo->id?>"><?=$vehiculo->vehiculo?></option>
-                                                  <?php
-                                                }
-                                                ?>
-                                              </select>
-                                              <div class="valid-feedback">
-                                                ¡Bien!
-                                              </div>
-                                              <div class="invalid-feedback">
-                                                Dato requerido
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <!--/span-->
-                                      </div>
-
-                                  </div>
-                                  <div class="form-actions">
-                                      <div class="card-body">
-                                          <button type="submit" class="btn btn-success" id="ts-success"> <i class="fa fa-check"></i> Guardar</button>
-                                          <button type="button" class="btn btn-dark" onclick="cancelar()">Cancelar</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-             <footer class="footer text-center">
-       Todos los derechos reservados por Xtreme admin. Diseñado y desarrollado por <a href="https://artbot.mx/">ARTBOT</a>.
-</footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
+            <a href="#" data-menu="menu-settings" class="button button-s button-full button-m button-round-large bg-highlight shadow-large">Back to Settings</a>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- customizer Panel -->
-    <!-- ============================================================== -->
-    <div class="chat-windows"></div>
-    <!-- ============================================================== -->
-    <script type="text/javascript">
-      var base_url = "<?php echo base_url(); ?>";
-    </script>
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="<?= base_url()?>estilos/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url()?>estilos/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="<?= base_url()?>estilos/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps -->
-    <script src="<?= base_url()?>estilos/dist/js/app.min.js"></script>
-    <script src="<?= base_url()?>estilos/dist/js/app.init.light-sidebar.js"></script>
-    <script src="<?= base_url()?>estilos/dist/js/app-style-switcher.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url()?>estilos/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?= base_url()?>estilos/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="<?= base_url()?>estilos/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?= base_url()?>estilos/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?= base_url()?>estilos/dist/js/custom.min.js"></script>
+    <!-- Menu Share-->
+    <div id="menu-share" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="340" data-menu-effect="menu-over">
+        <div class="content bottom-0">
+            <div class="menu-title"><h1>Share the Love</h1><p class="color-highlight">Just Tap the Social Icon. We'll add the Link</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+            <div class="divider bottom-0"></div>
+        </div>
+        <div class="link-list link-list-1 left-15 right-15">
+            <a href="#" class="shareToFacebook">
+                <i class="font-18 fab fa-facebook color-facebook"></i>
+                <span class="font-13">Facebook</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <a href="#" class="shareToTwitter">
+                <i class="font-18 fab fa-twitter-square color-twitter"></i>
+                <span class="font-13">Twitter</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <a href="#" class="shareToLinkedIn">
+                <i class="font-18 fab fa-linkedin color-linkedin"></i>
+                <span class="font-13">LinkedIn</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <a href="#" class="shareToWhatsApp">
+                <i class="font-18 fab fa-whatsapp-square color-whatsapp"></i>
+                <span class="font-13">WhatsApp</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <a href="#" class="shareToMail no-border">
+                <i class="font-18 fa fa-envelope-square color-mail"></i>
+                <span class="font-13">Email</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
 
-    <script src="<?= base_url()?>estilos/assets/libs/toastr/build/toastr.min.js"></script>
-    <script src="<?= base_url()?>estilos/sistema/js/posregistro-transportista.js"></script>
+    <div class="menu-hider"></div>
+</div>
 
-    <script type="text/javascript">
-      function posregistro(){
-        document.getElementById("formposregistro").style.display = "block";
-        document.getElementById("posregistro").style.display = "none";
-      }
-    </script>
-
-    <script type="text/javascript">
-      function cancelar(){
-        document.getElementById("formposregistro").style.display = "none";
-        document.getElementById("posregistro").style.display = "block";
-      }
-    </script>
-
-    <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-    </script>
 
 </body>
-
-
-</html>

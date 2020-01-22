@@ -1,9 +1,10 @@
-$( window ).on( "load", function() {
-  $("#transportista").submit(function (event){
-    event.preventDefault();
-    var formData = new FormData($("#transportista")[0]);
-    alert('Enviando');
 
+function ejecutarPosRegistro(e){
+
+  e.preventDefault();
+  //alert
+  Android.showToast('Enviando...')
+  var formData = new FormData($("#transportista")[0]);
     $.ajax({
       url:$("#transportista").attr("action"),
       type:$("#transportista").attr("method"),
@@ -12,20 +13,18 @@ $( window ).on( "load", function() {
       contentType:false,
       processData:false,
       success:function(respuesta){
+
         if (respuesta == "Registro Guardado") {
-          toastr.success('Enviando Datos!', 'Espere un momento');
+          Android.showToast('Registro Guardado')
           setTimeout(function() {
             //your code to be executed after 1 second
             window.location=base_url+'Login/logout';
-          }, 2000);
+          }, 1500);
         }else if (respuesta == "error") {
-          alert("error");
+          Android.showToast("error");
         }else if (respuesta == "You did not select a file to upload.") {
-          alert("You did not select a file to upload.");
+          Android.showToast("You did not select a file to upload.");
         }
       }
     });
-
-  });
-
-});
+}

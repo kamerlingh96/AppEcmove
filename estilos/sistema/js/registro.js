@@ -18,6 +18,10 @@ function ejecutarRegistro(e){
       }
     });
 }
+
+
+
+
   /*function registroCliente(){
     alert("hola")
     document.formulariocliente.submit(function (event){

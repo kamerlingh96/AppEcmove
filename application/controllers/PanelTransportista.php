@@ -41,7 +41,9 @@ class PanelTransportista extends CI_Controller {
 		}elseif ($estado == "Aprovado"){
 			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
 			$data['listaDeInicioFin'] = $this->PerfilTransportista->listaDeInicioFin();
-			$this->load->view('transportista/dashboard',$data);
+			$data['listaDeRemitenteDestinatario'] = $this->PerfilTransportista->listaDeRemitenteDestinatario();
+			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
+			$this->load->view('transportista/transportista-carga',$data);
 		}
 	}
 
@@ -53,7 +55,7 @@ class PanelTransportista extends CI_Controller {
 		$data['curp'] = $curp = $this->input->post("curp");
 		$data['id_vehiculo'] = $vehiculo = $this->input->post("vehiculo");
 
-		$mi_archivo = "personal";
+		$mi_archivo = "dropzoneComprobante";
 		$config['upload_path']          = './uploads/transportistas/';
 		$config['allowed_types']        = 'jpg|png|jpeg';
 		$config['file_name']        = "".$id."";
@@ -64,9 +66,9 @@ class PanelTransportista extends CI_Controller {
 
 		}else{
 			$nombre_archivo = $this->upload->data('file_name');
-			$galeria = array('titulo' => $nombre,'direccion' => 'uploads/transportistas/'.$nombre_archivo, 'tipo' => "transportistas");
+			$galeria = array('titulo' => $nombre,'direccion' => base_url().'uploads/transportistas/'.$nombre_archivo, 'tipo' => "transportistas");
 			$data['id_galeria_personal'] = $id_galeria = $this->PerfilTransportista->cargarGaleria($galeria);
-			$data['img_personal'] = 'uploads/transportistas/'.$nombre_archivo;
+			$data['img_personal'] = base_url().'uploads/transportistas/'.$nombre_archivo;
 			$data['estado'] = 'off';
 
 			$datauser['estado']='Aprovado';
@@ -114,9 +116,9 @@ class PanelTransportista extends CI_Controller {
 					'coord' => "En espera"
 				);
 				if ($this->PerfilTransportista->asignarViaje($dataViaje)) {
-					header('Location: '.base_url().'PanelTransportista/MisEmbarques');
+					header('Location: '.base_url().'PanelTransportista/Viajes');
 				}else {
-					echo "Error-";
+					echo "Error";
 				}
 			}
 		}else {
@@ -128,8 +130,49 @@ class PanelTransportista extends CI_Controller {
 			$this->load->view('transportista/misEmbarques',$data);
 		}
 
+	}
 
+	public function Viajes($param = '', $idEmbarque = ''){
+		$id = $this->session->userdata('id');
+		$email = $this->session->userdata('email');
+		$user = $this->session->userdata('user');
+		$tipo = $this->session->userdata('tipo');
+		$estado = $this->session->userdata('estado');
 
+		$datos = array(
+			'id' => $id,
+			'email' => $email,
+			'user' => $user,
+			'tipo' => $tipo,
+			'estado' => $estado
+		);
 
+		$fila_user = $this->Ingresar->getLogin($email);
+		$fila_perfil = $this->PerfilTransportista->getDatos($id);
+
+		$data = array(
+			'datosTransportista' => $datos,
+			'datosUsuario' => $fila_user,
+			'perfil' => $fila_perfil
+		);
+
+		if ($param == 'En ruta') {
+			echo "string";
+		}elseif ($param == 'mapaCompleto') {
+			$data['idEmbarque'] = $idEmbarque;
+			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
+			$data['listaDeInicioFin'] = $this->PerfilTransportista->listaDeInicioFin();
+			$data['listaDeRemitenteDestinatario'] = $this->PerfilTransportista->listaDeRemitenteDestinatario();
+			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
+			$data['listaDeViajes'] = $this->PerfilTransportista->listaDeViajes($id);
+			$this->load->view('transportista/transportista-mapa',$data);
+		}else {
+			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
+			$data['listaDeInicioFin'] = $this->PerfilTransportista->listaDeInicioFin();
+			$data['listaDeRemitenteDestinatario'] = $this->PerfilTransportista->listaDeRemitenteDestinatario();
+			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
+			$data['listaDeViajes'] = $this->PerfilTransportista->listaDeViajes($id);
+			$this->load->view('transportista/transportista-status',$data);
+		}
 	}
 }

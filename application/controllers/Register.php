@@ -13,6 +13,10 @@ public function __construct(){
 		$this->load->view('cliente-registro');
 	}
 
+	public function registroTransportista(){
+		$this->load->view('transportista-registro');
+	}
+
 	public function cliente(){
 		$name = $this->input->post("name");
 		$email = $this->input->post("email");
@@ -72,6 +76,7 @@ public function __construct(){
 		$name = $this->input->post("name");
 		$email = $this->input->post("email");
 		$curp = $this->input->post("curp");
+		$cel = $this->input->post("cel");
 		$pass = $this->input->post("pass");
 
 		$resultEmail = $this->Register_model->validarEmail($email);
@@ -86,7 +91,7 @@ public function __construct(){
 			);
 
 
-			$this->Register_model->transportista($data,$curp);
+			$this->Register_model->transportista($data,$curp,$cel);
 
 			echo "Registro Guardado";
 		}else {

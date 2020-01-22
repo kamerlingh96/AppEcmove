@@ -43,6 +43,11 @@
     });
   }, 500);
 
+
+  function generarNuevoEmbarque(){
+    document.formcomprobante.submit();
+  }
+
   </script>
 
 
@@ -80,58 +85,60 @@
             <div class="caption-bg bg-18"></div>
         </div>
 
+        <form action="<?=base_url()?>PanelCliente/Embarques/pagoComprobante/<?php echo $folioCotizacion;?>" method="post" enctype="multipart/form-data" name="formcomprobante" >
 
-        <div class="content content-boxed round-medium shadow-huge">
+          <div class="content content-boxed round-medium shadow-huge">
             <div class="content">
 
-                <div class="divider"></div>
+              <div class="divider"></div>
 
-                <p class="bottom-20">
-                    Envia una foto de tu comprobante de pago realizado.
-                </p>
-                <div class="file-data">
-                    <input type="file" class="upload-file button bg-highlight button-full shadow-huge round-small button-xs " accept="image/*" id="seleccionArchivos">
-                    <p class="upload-file-text">Seleccionar</p>
-                    <img src="<?= base_url()?>estilos/images/empty.png">
-                </div>
-                <div class="divider divider-margins bottom-0"></div>
-                <div class="">
+              <p class="bottom-20">
+                Envia una foto de tu comprobante de pago realizado.
+              </p>
+              <div class="file-data">
+                <input type="file" class="upload-file button bg-highlight button-full shadow-huge round-small button-xs " accept="image/*" id="seleccionArchivos" name="dropzoneComprobante">
+                <p class="upload-file-text">Seleccionar</p>
+                <img src="<?= base_url()?>estilos/images/empty.png">
+              </div>
+              <div class="divider divider-margins bottom-0"></div>
+              <div class="">
 
-                </div>
+              </div>
 
-                <img id="imagenPrevisualizacion" style="height:100%;width:100%;">
-                <br>
-                <a href="#"  onclick="generarNuevoEmbarque()" style="display:none;" id="btnEnviarComprobante" class="button button-full button-s shadow-large button-round-small bg-blue2-dark top-10">Enviar</a>
+              <img id="imagenPrevisualizacion" style="height:100%;width:100%;">
+              <br>
+              <a href="#"  onclick="generarNuevoEmbarque()" style="display:none;" id="btnEnviarComprobante" class="button button-full button-s shadow-large button-round-small bg-blue2-dark top-10">Enviar</a>
 
 
-                <!--<div class="link-list link-list-2 link-list-long-border upload-file-data disabled">
-                    <a href="#">
-                        <i class="fa fa-info-circle color-blue2-dark"></i>
-                        <span>File Name</span>
-                        <strong class="font-12 upload-file-name">Flexible, Fast, and Very Powerful</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-weight-hanging color-brown1-dark"></i>
-                        <span>File Size</span>
-                        <strong class="font-12 upload-file-size">Colorful, easy to use and beautiful</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-tag color-red2-dark"></i>
-                        <span>File Type</span>
-                        <strong class="font-12 upload-file-type">Colorful, easy to use and beautiful</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-clock color-green1-dark"></i>
-                        <span>Modified Date</span>
-                        <strong class="font-12 upload-file-modified">Designed to feel iOS like</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>-->
-            </div>
-        </div>
+              <!--<div class="link-list link-list-2 link-list-long-border upload-file-data disabled">
+              <a href="#">
+              <i class="fa fa-info-circle color-blue2-dark"></i>
+              <span>File Name</span>
+              <strong class="font-12 upload-file-name">Flexible, Fast, and Very Powerful</strong>
+              <i class="fa fa-angle-right"></i>
+            </a>
+            <a href="#">
+            <i class="fa fa-weight-hanging color-brown1-dark"></i>
+            <span>File Size</span>
+            <strong class="font-12 upload-file-size">Colorful, easy to use and beautiful</strong>
+            <i class="fa fa-angle-right"></i>
+          </a>
+          <a href="#">
+          <i class="fa fa-tag color-red2-dark"></i>
+          <span>File Type</span>
+          <strong class="font-12 upload-file-type">Colorful, easy to use and beautiful</strong>
+          <i class="fa fa-angle-right"></i>
+        </a>
+        <a href="#">
+        <i class="fa fa-clock color-green1-dark"></i>
+        <span>Modified Date</span>
+        <strong class="font-12 upload-file-modified">Designed to feel iOS like</strong>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>-->
+  </div>
+</div>
+        </form>
 
 
 
