@@ -76,8 +76,8 @@
           <a href="transportista-perfil.html"><i class="fa fa-user"></i><span>Perfil</span></a>
           <a href="<?= base_url()?>PanelTransportista/Viajes" class="active-nav"><i class="fa fa-road"></i><span>Viajes</span></a>
           <a href="<?= base_url()?>"><i class="fa fa-box"></i><span>Carga</span></a>
-          <a href="transportista-pagos.html"><i class="fa fa-wallet"></i><span>Pagos</span></a>
-          <a href="ayuda.html" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
+          <a href="#"><i class="fa fa-wallet"></i><span>Pagos</span></a>
+          <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
           <div class="clear"></div>
       </div>
 
@@ -99,7 +99,7 @@
 
 
                           <div class="content-boxed content-boxed-full">
-                              <img data-src="<?= base_url()?>estilos/images/pictures/18w.jpg" class="preload-image responsive-image bottom-20">
+                              <img src="<?= base_url()?>estilos/images/pictures/18w.jpg" class="preload-image responsive-image bottom-20">
                               <div class="content bottom-10">
                                   <div class="float-left">
                                       <h1 class="bolder">#<?=$embarque->id?></h1>
@@ -112,11 +112,11 @@
                                      data-toggle-effect="rotate-45"
                                      data-toggle-icon-on="color-green1-dark"
                                      data-toggle-icon-off="color-red1-dark"
-                                     data-toggle-content="toggle-content-6">
+                                     data-toggle-content="toggle-content-6-<?=$embarque->id?>">
                                       <span class="color-theme regularbold">Ver mas</span>
                                       <i class="fa fa-plus"></i>
                                   </a>
-                                  <div class="toggle-content" id="toggle-content-6">
+                                  <div class="toggle-content" id="toggle-content-6-<?=$embarque->id?>">
                                     <div class="link-list link-list-2 link-list-long-border ">
                                         <a href="#">
                                             <i class="far fa-calendar color-blue2-dark" style="top: 30px!important;"></i>
@@ -148,7 +148,7 @@
                                         <p class="font-12 bottom-15">$<?=number_format($embarque->totalFacturacion - 14000)?></p>
                                     </div>
                                     <div class="one-half last-column">
-                                        <strong class="color-theme">Time:</strong>
+                                        <strong class="color-theme">Tiempo:</strong>
                                         <p class="font-12 bottom-15"><i class="far fa-clock right-5"></i>09:00 AM</p>
                                     </div>
                                     <div class="clear"></div>
@@ -157,25 +157,6 @@
                                         <?=$paquete->descripcionPaquete?>
                                     </p>
 
-                                    <div class="user-group">
-                                        <div class="user-group-manager border-highlight">
-                                            <img class="shadow-large" src="<?= base_url()?>estilos/images/pictures/faces/4s.png" alt="img">
-                                            <h4 class="color-theme">Vincent M.</h4>
-                                            <em class="color-highlight">Event Creator</em>
-                                        </div>
-                                        <div class="user-group-title">
-                                            <h5 class="color-theme bolder bottom-0">Friends that are Going</h5>
-                                            <p class="under-heading font-10 color-highlight bottom-15">John, Jack, Jason and Joe and 16 others</p>
-                                        </div>
-                                        <div class="user-group-users">
-                                            <img class="shadow-large" src="images/pictures/faces/2s.png">
-                                            <img class="shadow-large" src="images/pictures/faces/3s.png">
-                                            <img class="shadow-large" src="images/pictures/faces/1s.png">
-                                            <img class="shadow-large" src="images/pictures/faces/4s.png">
-                                            <div class="clear"></div>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
                                   </div>
 
                                   <a href="google.navigation:q=<?=$inicioFin->coordsInicio?>&mode=d" class="button button-s button-full round-small shadow-huge bg-highlight">Punto A</a>

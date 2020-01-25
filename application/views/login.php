@@ -37,7 +37,6 @@
 
 	<div class="header header-fixed header-logo-center">
         <a href="index.html" class="header-title">ECMOVE</a>
-		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
 
 	</div>
 

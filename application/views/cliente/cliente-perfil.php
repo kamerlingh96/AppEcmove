@@ -29,11 +29,11 @@
 
 
       <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
-          <a href="<?= base_url()?>PanelCliente/Perfil" class="active-nav"><i class="fa fa-user"></i><span>Perfil</span></a>
-          <a href="status-viaje.html"><i class="fa fa-road"></i><span>Viajes</span></a>
+          <a href="javascript:location.reload()" class="active-nav"><i class="fa fa-user"></i><span>Perfil</span></a>
+          <a href="<?= base_url()?>PanelCliente/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
           <a href="<?= base_url()?>"><i class="fa fa-box"></i><span>Carga</span></a>
           <a href="<?= base_url()?>PanelCliente/Embarques"><i class="fa fa-wallet"></i><span>Pagos</span></a>
-          <a href="#" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
+          <a href="<?=base_url()?>PanelCliente/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
           <div class="clear"></div>
       </div>
 
@@ -43,7 +43,7 @@
             <div class="caption-bottom left-15 text-left bottom-60">
                 <!-- <h1 class="color-theme bolder font-40 bottom-10"><?= $perfil->nombre ?></h1> -->
                 <h1 class="color-theme bolder font-40"><?= $perfil->nombre ?></h1>
-                <p class="color-theme font-12"><i class="fa fa-map-marker right-5 font-10"></i>Detalle 1</p>
+                <!-- <p class="color-theme font-12"><i class="fa fa-map-marker right-5 font-10"></i>Detalle 1</p> -->
                 <p class="color-theme bottom-50">
                     Descripción.
                 </p>
@@ -85,21 +85,21 @@
                 <div class="content-boxed">
                     <div class="content">
                         <h1 class="vcard-title color-highlight bold">Celular</h1>
-                        <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->tel ?></a><i class="fa fa-phone"></i></div>
+                        <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->tel ?></a></div>
 
                     </div>
                 </div>
                 <div class="content-boxed">
                     <div class="content">
                         <h1 class="vcard-title color-highlight bold">Dirección</h1>
-                        <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->direccion ?></a><i class="fa fa-map-marker"></i></div>
+                        <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->direccion ?></a></div>
 
                     </div>
                 </div>
                 <div class="content-boxed">
                     <div class="content">
                         <h1 class="vcard-title color-highlight bold">Correo</h1>
-                        <div class="vcard-field"><a href="mailto:home@domain.com"><?= $perfil->correo ?></a><i class="fa fa-home"></i></div>
+                        <div class="vcard-field"><a href="mailto:home@domain.com"><?= $perfil->correo ?></a></div>
 
                     </div>
                 </div>

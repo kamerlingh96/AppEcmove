@@ -66,10 +66,10 @@ function generarNuevoEmbarque(){
 
     <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
         <a href="<?=base_url()?>PanelCliente/Perfil"><i class="fa fa-user"></i><span>Perfil</span></a>
-        <a href="status-viaje.html"><i class="fa fa-road"></i><span>Viajes</span></a>
+        <a href="<?= base_url()?>PanelCliente/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
         <a href="javascript:location.reload()" class="active-nav"><i class="fa fa-box"></i><span>Carga</span></a>
         <a href="<?=base_url()?>PanelCliente/Embarques"><i class="fa fa-wallet"></i><span>Pagos</span></a>
-        <a href="#" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
+        <a href="<?=base_url()?>PanelCliente/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
         <div class="clear"></div>
     </div>
 
@@ -83,11 +83,11 @@ function generarNuevoEmbarque(){
                     <p class="boxed-text-large under-heading color-white opacity-90 top-10">
                         ¿En dónde pasamos por tu carga?
                     </p>
-                    <a href="#" class="show-map button button-m button-center-medium bg-highlight button-round-small">LUGAR A</a>
+                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">LUGAR A</a>
                 </div>
                 <div class="caption-overlay bg-black opacity-80"></div>
               </div>
-            <a href="#" data-menu="menu-signup" class="hide-map button button-m bg-red2-dark button-round-small">ELEGIR</a>
+            <a href="#" data-menu="menu-signup" class="hide-map button button-m bg-green1-dark button-round-small">ELEGIR</a>
         </div>
     </div>
 
@@ -100,13 +100,13 @@ function generarNuevoEmbarque(){
                     <p class="boxed-text-large under-heading color-white opacity-90 top-10">
                         ¿En dónde pasamos por tu carga?
                     </p>
-                    <a href="#" class="show-map button button-m button-center-medium bg-highlight button-round-small">LUGAR B</a>
+                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">LUGAR B</a>
                     <br>
                     <a href="#" onclick="cancelarpunto()" class="button button-m button-center-medium bg-highlight button-round-small">CANCELAR</a>
                 </div>
                 <div class="caption-overlay bg-black opacity-80"></div>
               </div>
-            <a href="#" data-menu="menu-signup3" class="hide-map button button-m bg-red2-dark button-round-small">ELEGIR</a>
+            <a href="#" data-menu="menu-signup3" class="hide-map button button-m bg-green1-dark button-round-small">ELEGIR</a>
         </div>
     </div>
 
@@ -261,28 +261,24 @@ function generarNuevoEmbarque(){
             <input type="text" name="tipoMaterial" value="Solido">
           </div>
 
-          <div class="input-style has-icon input-style-1 input-required">
-            <i class="input-icon fa fa-user font-12"></i>
+          <div class="input-style input-style-1 input-required">
             <span>Alto</span>
 
             <input type="number" placeholder="Alto" name="alto" >
           </div>
-          <div class="input-style has-icon input-style-1 input-required">
-            <i class="input-icon fa fa-envelope"></i>
+          <div class="input-style input-style-1 input-required">
             <span>Ancho</span>
 
             <input type="number" placeholder="Ancho" name="ancho" >
           </div>
 
-          <div class="input-style has-icon input-style-1 input-required">
-            <i class="input-icon fa fa-mobile font-12"></i>
+          <div class="input-style input-style-1 input-required">
             <span>Largo</span>
 
             <input type="number" placeholder="Largo" name="largo">
           </div>
 
-          <div class="input-style has-icon input-style-1 input-required">
-            <i class="input-icon fa fa-phone font-12"></i>
+          <div class="input-style n input-style-1 input-required">
             <span>Peso</span>
 
             <input type="number" placeholder="Peso" name="peso">

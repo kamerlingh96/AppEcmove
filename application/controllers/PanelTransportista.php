@@ -175,4 +175,8 @@ class PanelTransportista extends CI_Controller {
 			$this->load->view('transportista/transportista-status',$data);
 		}
 	}
+
+	public function Contacto(){
+		$this->load->view('contacto');
+	}
 }

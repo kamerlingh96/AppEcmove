@@ -348,4 +348,45 @@ class PanelCliente extends CI_Controller {
 			$this->load->view('cliente/cliente-pagos',$data);
 		}
 	}
+
+	public function Viajes($param = '', $idEmbarque = ''){
+		$id = $this->session->userdata('id');
+		$email = $this->session->userdata('email');
+		$user = $this->session->userdata('user');
+		$tipo = $this->session->userdata('tipo');
+		$estado = $this->session->userdata('estado');
+
+		$datos = array(
+			'id' => $id,
+			'email' => $email,
+			'user' => $user,
+			'tipo' => $tipo,
+			'estado' => $estado
+		);
+
+		$this->load->model('Ingresar');
+		$fila_user = $this->Ingresar->getLogin($email);
+		$this->load->model('PerfilCliente');
+		$fila_perfil = $this->PerfilCliente->getDatos($id);
+
+		$data = array( 'datosUsuario' => $fila_user , 'perfil' => $fila_perfil);
+		if($param == 'algo'){
+
+		}else{
+			$data['listaDeEmbarque'] = $listaDeEmbarque = $this->PerfilCliente->listaDeEmbarque($id);
+			$data['listaDeRemitenteDestinatario'] = $listaDeRemitenteDestinatario = $this->PerfilCliente->listaDeRemitenteDestinatario($id);
+			$data['listaDeInicioFin'] = $listaDeInicioFin = $this->PerfilCliente->listaDeInicioFin($id);
+			$data['listaDePaquete'] = $listaDePaquete = $this->PerfilCliente->listaDePaquete($id);
+			$data['listaDeViajes'] = $listaDeViajes = $this->PerfilCliente->listaDeViajes();
+			$data['listaDeTransportistas'] = $listaDeTransportistase = $this->PerfilCliente->listaDeTransportistas();
+			$this->load->view('cliente/cliente-status',$data);
+		}
+
+	}
+
+
+	public function Contacto(){
+		$this->load->view('contacto');
+	}
+
 }

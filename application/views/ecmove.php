@@ -15,21 +15,13 @@
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="red2">
-<script type="text/javascript">
-  function cerrarwebview(){
-    Android.showToast("cerrarwebview")
-  }
-</script>
-<div id="page">
+
+<div id="page" style="opacity:0.9 !important">
 
     <div id="page-preloader">
         <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
     </div>
 
-	<div class="header header-fixed header-logo-center">
-        <a href="#" class="header-title">ECMOVE</a>
-		<a href="<?= base_url()?>" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-	</div>
 
 
 
@@ -37,53 +29,19 @@
     <div class="page-content">
 
         <div class="cover-slider owl-carousel bg-black">
-            <div data-height="cover" class="caption">
+            <div data-height="cover" class="caption" >
                 <div class="caption-center">
-                    <h1 class="center-text bottom-30"><i class="fa fa-4x fa-truck color-white"></i></h1>
+                    <img src="<?= base_url()?>uploads/sistema/logo.png" alt="" style="width: 80%;margin: auto;">
                     <h1 class="center-text color-white bolder fa-2x">Tu carga en 3 pasos</h1>
                     <h6 class="center-text color-white bottom-20">Conectamos lo mejor con los mejores</h6>
 
-                    <p class="boxed-text-large color-white opacity-80">
-                        With over 10 years ld, we give our customers everything we have.
-                    </p>
-                    <a href="<?= base_url()?>" class="button button-s bg-highlight button-round-huge button-center-small shadow-large">INICIAR</a>
                 </div>
                 <div class="caption-overlay bg-black opacity-70"></div>
-                <div class="caption-bg" style="background-image:url(<?= base_url()?>estilos/images/pictures/14t.jpg)"></div>
-            </div>
-
-            <div data-height="cover" class="caption">
-                <div class="caption-center">
-                    <h1 class="center-text color-white bolder fa-3x bottom-20">Captions Rock</h1>
-
-                    <div class="divider-small top-30 bottom-30 bg-highlight"></div>
-
-                    <p class="boxed-text-large color-white opacity-80">
-                        Limitless possibilities. Switch your cover to reflect
-                        your style and design. It's flexible beyond belief.
-                    </p>
-                    <a href="<?= base_url()?>" class="button button-s bg-highlight button-round-huge button-center-small shadow-large">INICIAR</a>
-                </div>
-                <div class="caption-overlay bg-black opacity-80"></div>
-                <div class="caption-bg" style="background-image:url(<?= base_url()?>estilos/images/pictures/25t.jpg)"></div>
+                <div class="caption-bg" style="background-image:url(<?= base_url()?>estilos/images/pictures/fondoInicio.png)"></div>
             </div>
 
 
 
-            <div data-height="cover" class="caption">
-                <div class="caption-center">
-                    <h1 class="color-white bolder fa-4x left-20 bottom-20 top-50">FIND</h1>
-                    <h1 class="color-white bolder fa-5x left-20 bottom-20">YOUR</h1>
-                    <h1 class="color-white bolder fa-4x left-20 bottom-30">STYLE</h1>
-                    <p class="left-20 right-50 color-white opacity-90">
-                        Limitless possibilities. Switch your cover to reflect
-                        your style and design. It's flexible beyond belief.
-                    </p>
-                    <a href="<?= base_url()?>" class="left-20 button button-s bg-highlight button-round-medium shadow-large">INICIAR</a>
-                </div>
-                <div class="caption-overlay bg-black opacity-80"></div>
-                <div class="caption-bg" style="background-image:url(<?= base_url()?>estilos/images/pictures/29t.jpg)"></div>
-            </div>
         </div>
     </div>
 
@@ -215,4 +173,17 @@
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
+<script type="text/javascript">
+var base_url = "<?php echo base_url(); ?>"
+  function cerrarwebview(){
+    Android.showToast("cerrarwebview")
+  }
+
+  setTimeout(function () {
+    location.href = base_url;
+  }, 3000);
+
+
+
+</script>
 </body>

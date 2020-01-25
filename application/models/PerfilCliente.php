@@ -152,5 +152,13 @@ class PerfilCliente extends CI_Model
 
   }
 
+  public function listaDeViajes(){
+    return $this->db->get('viajes');
+  }
+
+  public function listaDeTransportistas(){
+    return $this->db->get('transportistas');
+  }
+
 
 }
