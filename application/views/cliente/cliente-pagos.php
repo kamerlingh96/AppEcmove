@@ -181,6 +181,7 @@
                         <p class="bottom-0"><strong>Destino: </strong><?php echo $inicioFin->municipioFin. ", " .$inicioFin->estadoFin; ?></p>
                         <p class="bottom-0"><strong>Cotización: </strong>$<?=number_format($embarque->totalFacturacion)?></p>
                         <p class="bottom-0"><strong>Estado de Pago: </strong><?=$embarque->estadoFacturacion?> </p>
+                        <p class="bottom-0"><strong>Distancia Km: </strong><?=$inicioFin->distanciaMetros/1000?>Km </p>
                     </div>
                     <div class="clear"></div>
                     <div class="divider top-10 bottom-10"></div>
@@ -190,13 +191,22 @@
                     </p>
                     <div class="divider top-10 bottom-10"></div>
                     <div class="one-half"  >
-                        <a href="<?=base_url()?>PanelCliente/Embarques/cotizacion/<?=$embarque->id?>" style="<?php if($embarque->estadoFacturacion == 'Procesando Pago'){echo 'display: contents;';} ?>" class="button button-s round-small shadow-huge button-full bg-green1-dark">PAGAR</a>
+                        <a href="<?=base_url()?>PanelCliente/Embarques/cotizacion/<?=$embarque->id?>" style="<?php
+                        if($embarque->estadoFacturacion != 'Pendiente')
+                        {echo 'display: contents;';} ?>" class="button button-s round-small shadow-huge button-full bg-green1-dark">PAGAR</a>
 
                     </div>
                     <div class="one-half last-column">
                         <a href="#" class="close-menu button button-s round-small shadow-huge button-full bg-blue2-dark">MÁS TARDE</a>
                     </div>
                         <!-- <a href="<?=base_url()?>PanelCliente/Embarques/descargar/<?=$embarque->id?>" class="button button-s round-small shadow-huge button-full bg-blue2-dark">DESCARGAR COTIZACIÓN</a> -->
+                        <?php
+                        if ($embarque->estadoFacturacion != 'Cancelado' && $embarque->estadoFacturacion != 'Pagado') {
+                          ?>
+                          <a href="<?=base_url()?>PanelCliente/Embarques/cancelarEmbarque/<?=$embarque->id?>" class="button button-s round-small shadow-huge button-full bg-red2-dark">CANCELAR</a>
+                          <?php
+                        }
+                         ?>
                 </div>
             </div>
 

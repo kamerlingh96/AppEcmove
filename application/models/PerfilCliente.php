@@ -161,4 +161,20 @@ class PerfilCliente extends CI_Model
   }
 
 
+  public function cancelarEmbarque($id,$folioCotizacion){
+    $modificar = array(
+      'estadoFacturacion' => "Cancelado",
+      'tipoPago' => "Cancelado",
+      'estadoDeEmbarque' => "Cancelado"
+    );
+
+    $this->db->where('id', $folioCotizacion);
+    if ($this->db->update("embarque",$modificar)) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+
 }

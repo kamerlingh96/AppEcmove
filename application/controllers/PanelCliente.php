@@ -126,6 +126,8 @@ class PanelCliente extends CI_Controller {
 			$dataEmbarque['cpFin'] = $cpFin = $this->input->post("cpFin");
 			$dataEmbarque['referenciaFin'] = $referenciaFin = $this->input->post("referenciaFin");
 
+			$dataEmbarque['distanciaMetros'] = $distanciaMetros = $this->input->post("distanciaMetros");
+
 			$dataEmbarque['tipoMaterial'] = $tipoMaterial = $this->input->post("tipoMaterial");
 			$dataEmbarque['alto'] = $alto = $this->input->post("alto");
 			$dataEmbarque['ancho'] = $ancho = $this->input->post("ancho");
@@ -148,7 +150,7 @@ class PanelCliente extends CI_Controller {
 			//====================   Operacion de Cotizacion   =======================//
 
 
-			$dataEmbarque['totalCotizado'] = $totalCotizado = 23000;
+			$dataEmbarque['totalCotizado'] = $totalCotizado = ($distanciaMetros/1000)*25;
 
 			$totalIva = $totalCotizado * 0.16;
 
@@ -215,7 +217,8 @@ class PanelCliente extends CI_Controller {
 					'coloniaFin' => $coloniaFin,
 					'numExtFin' => $numExtFin,
 					'numIntFin' => $numIntFin,
-					'referenciaFin' => $referenciaFin
+					'referenciaFin' => $referenciaFin,
+					'distanciaMetros' => $distanciaMetros
 				);
 
 				$paquete = array(
@@ -329,14 +332,20 @@ class PanelCliente extends CI_Controller {
 
 			header('Location: '.base_url().'PanelCliente/Embarques');
 
-		}elseif ($param == 'descargar') {
+		}elseif ($param == 'cancelarEmbarque') {
 			$data['folioCotizacion'] = $folioCotizacion;
 			$data['listaDeEmbarque'] = $listaDeEmbarque = $this->PerfilCliente->listaDeEmbarque($id);
 			$data['listaDeRemitenteDestinatario'] = $listaDeRemitenteDestinatario = $this->PerfilCliente->listaDeRemitenteDestinatario($id);
 			$data['listaDeInicioFin'] = $listaDeInicioFin = $this->PerfilCliente->listaDeInicioFin($id);
 			$data['listaDePaquete'] = $listaDePaquete = $this->PerfilCliente->listaDePaquete($id);
 
-			$this->load->view('cliente/cotizacionEmbarque',$data);
+			$verificacionDePago = $this->PerfilCliente->cancelarEmbarque($id,$folioCotizacion);
+			if ($verificacionDePago) {
+			 echo "echo";
+			 header('Location: '.base_url().'PanelCliente/Embarques');
+		 }else {
+			 echo "error";
+		 }
 
 
 		}else {

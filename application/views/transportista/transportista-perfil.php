@@ -4,10 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Last-Modified" content="0">
-<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-<meta http-equiv="Pragma" content="no-cache">
 <title>ECMOVE</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/styles/style.css">
@@ -15,119 +11,109 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/fonts/css/fontawesome-all.min.css">
 <!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
 <link rel="manifest" href="_manifest.json" data-pwa-version="set_by_pwa.js">
-<link rel="apple-touch-icon" sizes="180x180" href="<?= base_url()?>estilos/app/icons/icon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="red2">
 
-
 <div id="page">
-  <script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
-  </script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
-  <script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
-
 
   <script type="text/javascript">
-  function ejecutarAcceder(e){
-    document.loginform.submit();
-  }
+    $('.bg-0').css("background-image", "url(<?= $perfil->img_personal ?>)");
   </script>
+
     <div id="page-preloader">
         <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
     </div>
 
 	<div class="header header-fixed header-logo-center">
-        <a href="index.html" class="header-title">ECMOVE</a>
-
+        <a href="#" class="header-title">ECMOVE</a>
 	</div>
 
 
+  <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
+      <a href="javascript:location.reload()"  class="active-nav"><i class="fa fa-user"></i><span>Perfil</span></a>
+      <a href="<?= base_url()?>PanelTransportista/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
+      <a href="<?= base_url()?>PanelTransportista"><i class="fa fa-box"></i><span>Carga</span></a>
+      <a href="transportista-pagos.html"><i class="fa fa-wallet"></i><span>Pagos</span></a>
+      <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
+      <div class="clear"></div>
+  </div>
+    <div class="page-content header-clear">
 
-    <div class="page-content header-clear-medium">
-
-
-        <div class="content-boxed left-40 right-40">
-            <div class="content top-10 bottom-20">
-              <form class="" role="form" action="<?= base_url()?>Login/log" method="POST" name="loginform">
-                <h1 class="center-text uppercase ultrabold fa-3x">INICIAR</h1>
-                <p class="center-text font-11 under-heading bottom-30 color-highlight">
-                    Vinculamos tus cargas
+        <div data-height="65vh" class="caption">
+            <div class="caption-bottom left-15 text-left bottom-60">
+                <!-- <h1 class="color-theme bolder font-40 bottom-10">Nombre</h1> -->
+                <h1 class="color-theme bolder font-40"><?= $perfil->nombre ?></h1>
+                <!-- <p class="color-theme font-12"><i class="fa fa-map-marker right-5 font-10"></i>Detalle 1</p> -->
+                <p class="color-theme bottom-50">
+                    Descripción.
                 </p>
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-user font-11"></i>
-                    <span>Correo</span>
+            </div>
+            <div class="caption-overlay bg-gradient-fade opacity-95"></div>
+            <div class="caption-bg bg-0"></div>
+        </div>
 
-                    <input type="email" placeholder="Correo" name="email" value="erik@gmail.com">
+        <div class="content-boxed content-boxed-caption shadow-medium">
+            <div class="content top-0 center-text bottom-20">
+                <div class="one-third">
+                    <h1 class="bolder">351</h1>
+                    <p class="under-heading font-10 bottom-15">Viajes</p>
                 </div>
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-lock font-11"></i>
-                    <span>Contraseña</span>
-
-                    <input type="password" placeholder="Contraseña" name="pass" value="1234">
+                <div class="one-third">
+                    <h1 class="bolder">193</h1>
+                    <p class="under-heading font-10 bottom-15">Ganancias</p>
+                </div>
+                <div class="one-third last-column">
+                    <h1 class="bolder">615</h1>
+                    <p class="under-heading font-10 bottom-15">Dato 3</p>
                 </div>
                 <div class="clear"></div>
-                <a href="#" onclick="ejecutarAcceder(event)" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">ACCEDER</a>
-                <div class="divider top-30"></div>
 
-                <p class="center-text font-11 under-heading bottom-30 color-highlight">
-                    Crear una cuenta
-                </p>
-              <a href="<?= base_url()?>Register/registroCliente" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">CLIENTE</a>
-              <a href="<?= base_url()?>Register/registroTransportista" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">TRANSPORTISTA</a>
-                <div class="divider bottom-15"></div>
+                <div class="divider bottom-20"></div>
 
+                <div class="one-half">
+                    <a href="#" class="button button-full button-xs button-round-large shadow-large bg-highlight bottom-0">Dato</a>
+                </div>
                 <div class="one-half last-column">
-                    <a href="reestablecer.html" class="text-right font-11 color-theme opacity-50">¿Olvidaste tu contraseña?</a>
+                    <a href="#" class="button button-border button-full button-xs button-round-large shadow-large border-highlight color-highlight bottom-0">Dato</a>
                 </div>
                 <div class="clear"></div>
-              </form>
             </div>
         </div>
+
+
+
+        <div class="content-boxed">
+            <div class="content">
+                <h1 class="vcard-title color-highlight bold">Celular</h1>
+                <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->tel ?></a></div>
+
+            </div>
+        </div>
+        <div class="content-boxed">
+            <div class="content">
+                <h1 class="vcard-title color-highlight bold">Dirección</h1>
+                <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->curp ?></a></div>
+
+            </div>
+        </div>
+        <div class="content-boxed">
+            <div class="content">
+                <h1 class="vcard-title color-highlight bold">Correo</h1>
+                <div class="vcard-field"><a href="mailto:home@domain.com"><?= $perfil->correo ?></a></div>
+
+            </div>
+        </div>
+
+
+
+
 
     </div>
     <!-- Page Content Class Ends Here-->
 
-    <!--Menu Settings-->
-    <div id="menu-settings" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="310" data-menu-effect="menu-over">
-        <div class="content bottom-0">
-            <div class="menu-title"><h1>Settings</h1><p class="color-highlight">Flexible and Easy to Use</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
-            <div class="divider bottom-20"></div>
-            <div class="toggle-with-icon">
-                <i class="toggle-icon round-tiny fa fa-moon bg-red2-dark color-white"></i>
-                <a href="#" class="toggle-switch toggle-ios toggle-off"
-                   data-toggle-theme
-                   data-toggle-height="27"
-                   data-toggle-width="50"
-                   data-toggle-content="toggle-content-1"
-                   data-toggle-checkbox="toggle-checkbox-1"
-                   data-bg-on="bg-green1-dark"
-                   data-bg-off="">
-                    <span class="color-theme regularbold font-13">Dark Mode</span>
-                    <strong></strong>
-                    <u></u>
-                </a>
-            </div>
-            <div class="divider top-25 bottom-0"></div>
-            <div class="link-list link-list-2 link-list-long-border">
-                <a href="#" data-menu="menu-highlights">
-                    <i class="fa fa-tint bg-green1-dark color-white round-tiny"></i>
-                    <span>Page Highlight</span>
-                    <strong>16 Color Highlights Included</strong>
-                    <em class="bg-highlight">HOT</em>
-                </a>
-                <a href="#" data-menu="menu-backgrounds" class="no-border">
-                    <i class="fa fa-brush bg-blue2-dark color-white round-tiny"></i>
-                    <span>Page Background</span>
-                    <strong>10 Page Gradients Included</strong>
-                    <em class="bg-highlight">NEW</em>
-                </a>
-            </div>
-        </div>
 
-    </div>
     <!--Menu Settings Highlights-->
     <div id="menu-highlights" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="380" data-menu-effect="menu-over">
         <div class="content bottom-0">
@@ -176,43 +162,13 @@
         </div>
     </div>
     <!-- Menu Share-->
-    <div id="menu-share" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="340" data-menu-effect="menu-over">
-        <div class="content bottom-0">
-            <div class="menu-title"><h1>Share the Love</h1><p class="color-highlight">Just Tap the Social Icon. We'll add the Link</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
-            <div class="divider bottom-0"></div>
-        </div>
-        <div class="link-list link-list-1 left-15 right-15">
-            <a href="#" class="shareToFacebook">
-                <i class="font-18 fab fa-facebook color-facebook"></i>
-                <span class="font-13">Facebook</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <a href="#" class="shareToTwitter">
-                <i class="font-18 fab fa-twitter-square color-twitter"></i>
-                <span class="font-13">Twitter</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <a href="#" class="shareToLinkedIn">
-                <i class="font-18 fab fa-linkedin color-linkedin"></i>
-                <span class="font-13">LinkedIn</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <a href="#" class="shareToWhatsApp">
-                <i class="font-18 fab fa-whatsapp-square color-whatsapp"></i>
-                <span class="font-13">WhatsApp</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <a href="#" class="shareToMail no-border">
-                <i class="font-18 fa fa-envelope-square color-mail"></i>
-                <span class="font-13">Email</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </div>
-    </div>
+
 
     <div class="menu-hider"></div>
 </div>
 
 
-
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
+<script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
 </body>

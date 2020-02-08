@@ -45,6 +45,7 @@ function generarNuevoEmbarque(){
   document.nuevoEmbarque.submit();
 }
 
+
 </script>
 
 
@@ -77,6 +78,7 @@ function generarNuevoEmbarque(){
     <div class="page-content" id="puntoA">
 		    <div class="map-full">
 			       <div id="map_inicio"></div>
+             <div id="mapdistancia" style="display:none;"></div>
               <div data-height="cover" class="caption ">
                 <div class="caption-center">
                     <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO A</h1>
@@ -106,7 +108,7 @@ function generarNuevoEmbarque(){
                 </div>
                 <div class="caption-overlay bg-black opacity-80"></div>
               </div>
-            <a href="#" data-menu="menu-signup3" class="hide-map button button-m bg-green1-dark button-round-small">ELEGIR</a>
+            <a href="#" onclick="mapadistancia()" data-menu="menu-signup3" class="hide-map button button-m bg-green1-dark button-round-small">ELEGIR</a>
         </div>
     </div>
 
@@ -238,6 +240,7 @@ function generarNuevoEmbarque(){
             <input type="text" name="numExtFin" id="numExtFin">
             <input type="text" name="numIntFin" id="numIntFin">
             <input type="text" name="cpFin" id="cpFin">
+            <input type="number" name="distanciaMetros" id="distanciaMetros">
           </div>
 
           <div class="input-style has-icon input-style-1 input-required">

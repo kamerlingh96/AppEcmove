@@ -43,6 +43,15 @@ class PerfilTransportista extends CI_Model{
     return $this->db->get('embarque');
   }
 
+  public function embarque($id){
+    $result =  $this->db->query("SELECT * FROM embarque WHERE id = '" . $id . "' LIMIT 1");
+    if($result->num_rows() > 0){
+        return $result->row();
+    }else{
+      return null;
+    }
+  }
+
   public function listaDeInicioFin(){
     return $this->db->get('inicioFin');
   }
@@ -75,6 +84,15 @@ class PerfilTransportista extends CI_Model{
 
   public function listaDePaquete(){
     return $this->db->get('paquete');
+  }
+
+  public function updateEstadoDeEmbarque($id,$data){
+    $this->db->where('id', $id);
+    if ($this->db->update('embarque', $data)) {
+      return true;
+    }else {
+      return false;
+    }
   }
 
 }

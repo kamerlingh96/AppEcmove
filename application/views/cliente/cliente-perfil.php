@@ -91,7 +91,7 @@
                 </div>
                 <div class="content-boxed">
                     <div class="content">
-                        <h1 class="vcard-title color-highlight bold">Dirección</h1>
+                        <h1 class="vcard-title color-highlight bold">CURP</h1>
                         <div class="vcard-field"><a href="tel:+1 234 567 890"><?= $perfil->direccion ?></a></div>
 
                     </div>

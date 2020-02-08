@@ -4,6 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Last-Modified" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <title>ECMOVE</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/styles/style.css">
@@ -71,14 +75,14 @@
 
 	<div class="header header-fixed header-logo-center">
         <a href="#" class="header-title">ECMOVE</a>
-		<a href="<?= base_url()?>Login/logout" class="back-button header-icon header-icon-1"><i class="fas fa-times"></i></a>
+		<a href="<?= base_url()?>Login/logout" class="header-icon header-icon-1"><i class="fas fa-times"></i></a>
 	</div>
 
       <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
-          <a href="transportista-perfil.html"><i class="fa fa-user"></i><span>Perfil</span></a>
+          <a href="<?=base_url()?>PanelTransportista/Perfil"><i class="fa fa-user"></i><span>Perfil</span></a>
           <a href="<?= base_url()?>PanelTransportista/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
           <a href="<?= base_url()?>" class="active-nav"><i class="fa fa-box"></i><span>Carga</span></a>
-          <a href="#"><i class="fa fa-wallet"></i><span>Pagos</span></a>
+          <a href="javascript:location.reload()"><i class="fa fa-wallet"></i><span>Pagos</span></a>
           <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
           <div class="clear"></div>
       </div>
@@ -155,6 +159,7 @@
                         <p class="bottom-0"><strong>Inicio: </strong><?php echo $inicioFin->municipioInicio. " " .$inicioFin->estadoInicio; ?></p>
                         <p class="bottom-0"><strong>Destino: </strong><?php echo $inicioFin->municipioFin. ", " .$inicioFin->estadoFin; ?></p>
                         <p class="bottom-0"><strong>Ganancia: </strong>$<?=number_format($embarque->totalFacturacion - 14000)?></p>
+                        <p class="bottom-0"><strong>Distancia: </strong><?=$inicioFin->distanciaMetros/1000?>Km</p>
                     </div>
                     <div class="clear"></div>
                     <div class="divider top-10 bottom-10"></div>

@@ -6,9 +6,13 @@ class PanelTransportista extends CI_Controller {
 	public function __construct()
   {
     parent::__construct();
+		$this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+		$this->output->set_header('Pragma: no-cache');
+		$this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     $this->load->model('Ingresar');
 		$this->load->model('PerfilTransportista');
 		$this->load->model('Vehiculo_model');
+
   }
 
 	public function index()
@@ -156,8 +160,41 @@ class PanelTransportista extends CI_Controller {
 			'perfil' => $fila_perfil
 		);
 
-		if ($param == 'En ruta') {
-			echo "string";
+		if ($param == 'asignado') {
+			$embarque = $this->PerfilTransportista->embarque($idEmbarque);
+			$update = array();
+				$update['estadoDeEmbarque'] = "En ruta";
+
+				if ($this->PerfilTransportista->updateEstadoDeEmbarque($idEmbarque,$update)) {
+					echo '
+					<script type="text/javascript">
+						setTimeout (() => {
+
+							window.location="'.base_url().'PanelTransportista/Viajes";
+						}, 1000);
+					</script>
+					';
+				}
+
+				// code...
+
+		}elseif ($param == 'enruta') {
+			$embarque = $this->PerfilTransportista->embarque($idEmbarque);
+			$update = array();
+				$update['estadoDeEmbarque'] = "Completado";
+				if ($this->PerfilTransportista->updateEstadoDeEmbarque($idEmbarque,$update)) {
+					echo '
+					<script type="text/javascript">
+						setTimeout (() => {
+
+							window.location="'.base_url().'PanelTransportista/Viajes";
+						}, 1000);
+					</script>
+					';
+				}
+
+				// code...
+
 		}elseif ($param == 'mapaCompleto') {
 			$data['idEmbarque'] = $idEmbarque;
 			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
@@ -166,6 +203,13 @@ class PanelTransportista extends CI_Controller {
 			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
 			$data['listaDeViajes'] = $this->PerfilTransportista->listaDeViajes($id);
 			$this->load->view('transportista/transportista-mapa',$data);
+		}elseif ($param == 'historial') {
+			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
+			$data['listaDeInicioFin'] = $this->PerfilTransportista->listaDeInicioFin();
+			$data['listaDeRemitenteDestinatario'] = $this->PerfilTransportista->listaDeRemitenteDestinatario();
+			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
+			$data['listaDeViajes'] = $this->PerfilTransportista->listaDeViajes($id);
+			$this->load->view('transportista/historial',$data);
 		}else {
 			$data['listaDeEmbarques'] = $this->PerfilTransportista->listaDeEmbarques();
 			$data['listaDeInicioFin'] = $this->PerfilTransportista->listaDeInicioFin();
@@ -173,6 +217,38 @@ class PanelTransportista extends CI_Controller {
 			$data['listaDePaquete'] = $this->PerfilTransportista->listaDePaquete();
 			$data['listaDeViajes'] = $this->PerfilTransportista->listaDeViajes($id);
 			$this->load->view('transportista/transportista-status',$data);
+		}
+	}
+
+
+	public function Perfil($param = ''){
+		$id = $this->session->userdata('id');
+		$email = $this->session->userdata('email');
+		$user = $this->session->userdata('user');
+		$tipo = $this->session->userdata('tipo');
+		$estado = $this->session->userdata('estado');
+
+		$datos = array(
+			'id' => $id,
+			'email' => $email,
+			'user' => $user,
+			'tipo' => $tipo,
+			'estado' => $estado
+		);
+
+		$fila_user = $this->Ingresar->getLogin($email);
+		$fila_perfil = $this->PerfilTransportista->getDatos($id);
+
+		$data = array(
+			'datosTransportista' => $datos,
+			'datosUsuario' => $fila_user,
+			'perfil' => $fila_perfil
+		);
+
+		if ($param == "algo") {
+			// code...
+		}else {
+			$this->load->view('transportista/transportista-perfil',$data);
 		}
 	}
 

@@ -26,6 +26,7 @@
     </div>
 
     <?php
+    $contadorDeViajes = 0;
       function obtenerFecha($mes = ''){
         switch ($mes) {
           case '01':
@@ -74,38 +75,16 @@
 
 	<div class="header header-fixed header-logo-center">
         <a href="index.html" class="header-title">ECMOVE</a>
+        <a href="<?= base_url()?>PanelTransportista/Viajes" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
 	</div>
 
-      <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
-          <a href="<?=base_url()?>PanelTransportista/Perfil"><i class="fa fa-user"></i><span>Perfil</span></a>
-          <a href="javascript:location.reload()" class="active-nav"><i class="fa fa-road"></i><span>Viajes</span></a>
-          <a href="<?= base_url()?>PanelTransportista"><i class="fa fa-box"></i><span>Carga</span></a>
-          <a href="#"><i class="fa fa-wallet"></i><span>Pagos</span></a>
-          <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
-          <div class="clear"></div>
-      </div>
-
-    <div class="page-content header-clear-large">
-
-      <div data-height="100" class="caption caption-margins round-medium shadow-huge">
-          <div class="caption-center right-15 top-15 text-right">
-              <a href="<?=base_url()?>PanelTransportista/Viajes/historial" class="back-button button button-xs button-round-huge bg-highlight">Historial</a>
-          </div>
-          <div class="caption-center left-15 text-left">
-              <h1 class="color-white bolder">Mis Viajes</h1>
-              <p class="under-heading color-white opacity-90 bottom-0">
-                  Viajes completados
-              </p>
-          </div>
-          <div class="caption-overlay bg-black opacity-70"></div>
-          <div class="caption-bg bg-18"></div>
-      </div>
-
+<div class="page-content header-clear-large">
 
       <?php foreach ($listaDeViajes->result() as $viaje): ?>
         <?php if ($viaje->id_transportista == $perfil->id_user): ?>
           <?php foreach ($listaDeEmbarques->result() as $embarque): ?>
-            <?php if ($embarque->estadoDeEmbarque != "Completado" && $viaje->id_embarque == $embarque->id): ?>
+            <?php if ($embarque->estadoDeEmbarque == "Completado" && $viaje->id_embarque == $embarque->id): ?>
+              <?php $contadorDeViajes++; ?>
               <?php foreach ($listaDeInicioFin->result() as $inicioFin): ?>
                 <?php if ($inicioFin->id_embarque == $embarque->id): ?>
                   <?php foreach ($listaDeRemitenteDestinatario->result() as $remitenteDestinatario): ?>
@@ -123,7 +102,6 @@
                                       <h1 class="bolder">#<?=$embarque->id?></h1>
                                       <!-- <p class="font-10 under-heading bottom-15"><i class="fa fa-map-marker-alt right-10"></i>Melbourne Victoria, Collins Street</p> -->
                                   </div>
-                                  <a href="<?= base_url()?>PanelTransportista/Viajes/mapaCompleto/<?=$embarque->id?>" class="button button-xs bg-highlight round-huge shadow-huge float-right font-11">Ver Mapa Completo</a>
                                   <div class="divider clear bottom-15"></div>
                                   <a href="#" class="toggle-icon toggle-off bottom-15"
                                      data-icons-size="12"
@@ -179,32 +157,9 @@
                                         <strong class="color-theme">Distancia:</strong>
                                         <p class="font-12 bottom-15"><?=$inicioFin->distanciaMetros/1000?>Km</p>
                                     </div>
-                                    <div class="divider clear bottom-15"></div>
-                                    <div class="one-half ">
-                                      <a href="tel:<?=$remitenteDestinatario->telefonoInicio?>" class="button button-s button-full round-small shadow-huge bg-green3-dark">Llamar A</a>
-                                    </div>
-                                    <div class="one-half last-column">
-                                      <a href="google.navigation:q=<?=$inicioFin->coordsInicio?>&mode=d" class="button button-s button-full round-small shadow-huge bg-highlight">Punto A</a>
-                                    </div>
-                                    <div class="one-half ">
-                                      <a href="tel:<?=$remitenteDestinatario->telefonoFin?>" class="button button-s button-full round-small shadow-huge bg-green3-dark">Llamar B</a>
-                                    </div>
-                                    <div class="one-half last-column">
-                                      <a href="google.navigation:q=<?=$inicioFin->coordsFin?>&mode=d" class="button button-s button-full round-small shadow-huge bg-highlight">Punto B</a>
-                                    </div>
+
 
                                   </div>
-                                   <?php
-                                   if ($embarque->estadoDeEmbarque == "Asignado") {
-                                     ?>
-                                     <a href="<?= base_url()?>PanelTransportista/Viajes/asignado/<?=$embarque->id?>" class="button button-s button-full round-small shadow-huge bg-highlight">Embarcado</a>
-                                     <?php
-                                   }elseif ($embarque->estadoDeEmbarque == "En ruta") {
-                                     ?>
-                                     <a href="<?= base_url()?>PanelTransportista/Viajes/enruta/<?=$embarque->id?>" class="button button-s button-full round-small shadow-huge bg-highlight">Completado</a>
-                                     <?php
-                                   }
-                                    ?>
                               </div>
                           </div>
 
@@ -219,6 +174,17 @@
           <?php endforeach; ?>
         <?php endif; ?>
       <?php endforeach; ?>
+
+      <?php
+        if ($contadorDeViajes == 0) {
+          ?>
+          <div data-height="40" class="caption caption-margins round-medium shadow-huge top-30" style="text-align:center;">
+
+              <p>Sin embarques disponibles</p>
+          </div>
+          <?php
+        }
+       ?>
 
 
         <!-- <div class="content-boxed content-boxed-full">

@@ -162,10 +162,15 @@
                               <p class="font-12 bottom-15"><i class="far fa-clock right-5"></i><?= $fechaDeFacturacion[2]." ".$mesFacturacion." ".$fechaDeFacturacion[0] ?></p>
                           </div>
                           <div class="clear"></div>
-                          <strong class="color-theme">Descripción</strong>
-                          <p>
-                              <?=$paquete->descripcionPaquete?>
-                          </p>
+                          <div class="one-half">
+                            <strong class="color-theme">Descripción:</strong>
+                            <p class="font-12 bottom-15"><i class="far fa-clock right-5"></i><?=$paquete->descripcionPaquete?></p>
+                          </div>
+
+                          <div class="one-half last-column">
+                            <strong class="color-theme">Distancia:</strong>
+                            <p class="font-12 bottom-15"></i><?=$inicioFin->distanciaMetros/1000?>Km</p>
+                          </div>
 
                           <div class="clear"></div>
                         </div>

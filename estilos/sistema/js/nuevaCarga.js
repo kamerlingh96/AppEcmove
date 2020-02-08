@@ -97,6 +97,7 @@ function setMapaFin (coordsFin)
             document.getElementById("numExtFin").value = getAddressComponent(results,"street_number");
             document.getElementById("numIntFin").value = "";
             document.getElementById("cpFin").value = getAddressComponent(results,"postal_code");
+            //calculateAndDisplayRoute();
 
            }
          });
@@ -128,4 +129,24 @@ function getAddressComponent(address,component){
     }
   }
   return false;
+}
+
+
+function mapadistancia(){
+  var directionsService = new google.maps.DirectionsService();
+  var location_ini = document.getElementById("coordsInicio").value;
+  var location_fin = document.getElementById("coordsFin").value;
+
+  console.log(location_ini);
+console.log(location_fin);
+  var request = {
+    origin: location_ini,
+    destination: location_fin,
+    travelMode: 'DRIVING'
+  };
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      document.getElementById("distanciaMetros").value = result.routes[0].legs[0].distance.value;
+    }
+  });
 }
