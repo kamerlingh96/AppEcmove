@@ -11,22 +11,12 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>estilos/fonts/css/fontawesome-all.min.css">
 <!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
 
-<style media="screen">
-#map_inicio {
-  width: 100%;
-  height: 100%;
-}
-#map_fin {
-  width: 100%;
-  height: 100%;
-}
-</style>
+
 
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/jquery.js"></script>
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/plugins.js"></script>
 <script type="text/javascript" src="<?= base_url()?>estilos/scripts/custom.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9pK_ZAsjpURG7WHpwIDoipu00zcZNciA&callback=initMap"></script>
-<script type="text/javascript" src="<?= base_url()?>estilos/sistema/js/nuevaCarga.js"></script>
 
 <script type="text/javascript">
 
@@ -47,6 +37,55 @@ function generarNuevoEmbarque(){
 
 
 </script>
+
+<style media="screen">
+#map_inicio {
+  width: 100%;
+  height: 100%;
+}
+#map_fin {
+  width: 100%;
+  height: 100%;
+}
+
+#buscadorA,
+#buscadorB{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #FFF;
+  /* position: absolute;
+  margin-top: -420px;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+  text-align: center; */
+}
+
+#buscadorA .form-field,
+#buscadorB .form-field{
+  width: 70%;
+  display: flex;
+  float: left;
+}
+
+#buscadorA .form-button,
+#buscadorB .form-button{
+  width: 30%;
+  display: flex;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0 10px 0 10px;
+}
+
+
+</style>
 
 
 </head>
@@ -76,8 +115,24 @@ function generarNuevoEmbarque(){
 
     <div class="page-content-black"></div>
     <div class="page-content" id="puntoA">
+      
+     
+
 		    <div class="map-full">
+          
 			       <div id="map_inicio"></div>
+             <div id="buscadorA">
+                <form>
+                  <fieldset>
+                    <div class="form-field form-name">
+                      <input type="text" name="contactNameField" value="" class="contactField round-small requiredField" id="direccionA"/>
+                    </div>
+                    <div class="form-button">
+                      <input type="button" class="button bg-highlight button-m button-full round-small bottom-0 shadow-huge contactSubmitButton" value="Buscar" id="buscarA" />
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
              <div id="mapdistancia" style="display:none;"></div>
               <div data-height="cover" class="caption ">
                 <div class="caption-center">
@@ -96,6 +151,18 @@ function generarNuevoEmbarque(){
     <div class="page-content" id="puntoB" style="display:none;">
 		    <div class="map-full">
 			       <div id="map_fin"></div>
+              <div id="buscadorB">
+                <form>
+                  <fieldset>
+                    <div class="form-field form-name">
+                      <input type="text" name="contactNameField" value="" class="contactField round-small requiredField" id="direccionB"/>
+                    </div>
+                    <div class="form-button">
+                      <input type="button" class="button bg-highlight button-m button-full round-small bottom-0 shadow-huge contactSubmitButton" value="BuscarB" id="buscarB" />
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
               <div data-height="cover" class="caption ">
                 <div class="caption-center">
                     <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO B</h1>
@@ -120,15 +187,15 @@ function generarNuevoEmbarque(){
 
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-user font-12"></i>
-            <span>Nombre Quien Envia</span>
+            <span>Nombre quien envía</span>
 
-            <input type="name" placeholder="Nombre Quien Envia" name="nombreInicio" value="<?= $perfil->nombre ?>">
+            <input type="name" placeholder="Nombre quien envía" name="nombreInicio" value="<?= $perfil->nombre ?>">
           </div>
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-envelope"></i>
-            <span>Correo Quien Envia</span>
+            <span>Correo quien envía</span>
 
-            <input type="email" placeholder="Correo Quien Envia" name="correoInicio" value="<?= $perfil->correo ?>">
+            <input type="email" placeholder="Correo quien envía" name="correoInicio" value="<?= $perfil->correo ?>">
           </div>
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-mobile font-12"></i>
@@ -138,9 +205,9 @@ function generarNuevoEmbarque(){
           </div>
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-phone font-12"></i>
-            <span>Telefono</span>
+            <span>Teléfono</span>
 
-            <input type="tel" placeholder="Telefono Quien Envia (Opcional)" name="telefonoInicio">
+            <input type="tel" placeholder="Teléfono quien envía (Opcional)" name="telefonoInicio">
           </div>
 
 
@@ -193,29 +260,29 @@ function generarNuevoEmbarque(){
 
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-user font-12"></i>
-            <span>Nombre Quien Recibe</span>
+            <span>Nombre quien recibe</span>
 
-            <input type="name" placeholder="Nombre Quien Recibe" name="nombreFin" >
+            <input type="name" placeholder="Nombre quien recibe" name="nombreFin" >
           </div>
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-envelope"></i>
-            <span>Correo Quien Recibe</span>
+            <span>Correo quien recibe</span>
 
-            <input type="email" placeholder="Correo Quien Recibe" name="correoFin" >
+            <input type="email" placeholder="Correo quien recibe" name="correoFin" >
           </div>
 
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-mobile font-12"></i>
             <span>Celular</span>
 
-            <input type="tel" placeholder="Celular Quien Recibe" name="celularFin">
+            <input type="tel" placeholder="Celular quien recibe" name="celularFin">
           </div>
 
           <div class="input-style has-icon input-style-1 input-required">
             <i class="input-icon fa fa-phone font-12"></i>
-            <span>Telefono</span>
+            <span>Teléfono</span>
 
-            <input type="tel" placeholder="Telefono Quien Recibe (Opcional)" name="telefonoFin">
+            <input type="tel" placeholder="Teléfono quien recibe (Opcional)" name="telefonoFin">
           </div>
 
           <div class="clear"></div>
@@ -313,7 +380,18 @@ function generarNuevoEmbarque(){
 
   <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";
+
+    /* $("#buscarA").click(function() {
+      var direccionA = $("#direccionA").val();
+      buscarDireccionA()
+    }) */
+
+
+
   </script>
+
+  
+<script type="text/javascript" src="<?= base_url()?>estilos/sistema/js/nuevaCarga.js"></script>
 
 
 

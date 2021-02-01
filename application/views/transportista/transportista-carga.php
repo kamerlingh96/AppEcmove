@@ -81,8 +81,8 @@
       <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
           <a href="<?=base_url()?>PanelTransportista/Perfil"><i class="fa fa-user"></i><span>Perfil</span></a>
           <a href="<?= base_url()?>PanelTransportista/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
-          <a href="<?= base_url()?>" class="active-nav"><i class="fa fa-box"></i><span>Carga</span></a>
-          <a href="javascript:location.reload()"><i class="fa fa-wallet"></i><span>Pagos</span></a>
+          <a href="javascript:location.reload()" class="active-nav"><i class="fa fa-box"></i><span>Carga</span></a>
+          <a href="<?= base_url()?>PanelTransportista/Pagos"><i class="fa fa-wallet"></i><span>Pagos</span></a>
           <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
           <div class="clear"></div>
       </div>

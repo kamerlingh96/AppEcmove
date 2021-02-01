@@ -61,8 +61,8 @@ class PerfilCliente extends CI_Model
   }
 
   public function datosDelEmbarque($remitenteDestinatario,$inicioFin,$paquete){
-    if ($this->db->insert("remitenteDestinatario",$remitenteDestinatario)) {
-      if ($this->db->insert("inicioFin",$inicioFin)) {
+    if ($this->db->insert("remitentedestinatario",$remitenteDestinatario)) {
+      if ($this->db->insert("iniciofin",$inicioFin)) {
         if ($this->db->insert("paquete",$paquete)) {
           return true;
         }else {
@@ -86,13 +86,13 @@ class PerfilCliente extends CI_Model
   public function listaDeRemitenteDestinatario($id){
     $this->db->order_by('id', 'DESC');
     $this->db->where('id_usuario', $id);
-    return $this->db->get('remitenteDestinatario');
+    return $this->db->get('remitentedestinatario');
   }
 
   public function listaDeInicioFin($id){
     $this->db->order_by('id', 'DESC');
     $this->db->where('id_usuario', $id);
-    return $this->db->get('inicioFin');
+    return $this->db->get('iniciofin');
   }
 
   public function listaDePaquete($id){
@@ -109,7 +109,7 @@ class PerfilCliente extends CI_Model
       'payerID' => $payerID
     );
 
-    if ($this->db->insert("pagosPaypal",$data)) {
+    if ($this->db->insert("pagospaypal",$data)) {
       $modificar = array(
         'estadoFacturacion' => "Pagado",
         'tipoPago' => "PayPal"
@@ -134,7 +134,7 @@ class PerfilCliente extends CI_Model
     );
 
 
-    if ($this->db->insert("pagosComprobantes",$data)) {
+    if ($this->db->insert("pagoscomprobantes",$data)) {
       $modificar = array(
         'estadoFacturacion' => "Procesando Pago",
         'tipoPago' => "Comprobante"

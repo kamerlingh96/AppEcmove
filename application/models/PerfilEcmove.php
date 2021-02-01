@@ -12,13 +12,13 @@ class PerfilEcmove extends CI_Model
   public function listaDeRemitenteDestinatario($id){
     $this->db->order_by('id', 'DESC');
     $this->db->where('id_embarque', $id);
-    return $this->db->get('remitenteDestinatario');
+    return $this->db->get('remitentedestinatario');
   }
 
   public function listaDeInicioFin($id){
     $this->db->order_by('id', 'DESC');
     $this->db->where('id_embarque', $id);
-    return $this->db->get('inicioFin');
+    return $this->db->get('iniciofin');
   }
 
   public function listaDePaquete($id){
@@ -29,7 +29,7 @@ class PerfilEcmove extends CI_Model
 
   public function pagoComprobante($id){
     $this->db->where('id_embarque', $id);
-    return $this->db->get('pagosComprobantes');
+    return $this->db->get('pagoscomprobantes');
   }
 
   public function AprobarEmbarque($id){

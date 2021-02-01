@@ -53,7 +53,7 @@ class PerfilTransportista extends CI_Model{
   }
 
   public function listaDeInicioFin(){
-    return $this->db->get('inicioFin');
+    return $this->db->get('iniciofin');
   }
 
   public function asignarTransportistaEmbarque($id,$data){
@@ -79,7 +79,7 @@ class PerfilTransportista extends CI_Model{
   }
 
   public function listaDeRemitenteDestinatario(){
-    return $this->db->get('remitenteDestinatario');
+    return $this->db->get('remitentedestinatario');
   }
 
   public function listaDePaquete(){

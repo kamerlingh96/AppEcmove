@@ -74,6 +74,8 @@ public function __construct(){
 
 	public function transportista(){
 		$name = $this->input->post("name");
+		$apellidoPaterno = $this->input->post("apellidoPaterno");
+		$apellidoMaterno = $this->input->post("apellidoMaterno");
 		$email = $this->input->post("email");
 		$curp = $this->input->post("curp");
 		$cel = $this->input->post("cel");
@@ -91,7 +93,7 @@ public function __construct(){
 			);
 
 
-			$this->Register_model->transportista($data,$curp,$cel);
+			$this->Register_model->transportista($data,$curp,$cel,$apellidoPaterno,$apellidoMaterno);
 
 			echo "Registro Guardado";
 		}else {

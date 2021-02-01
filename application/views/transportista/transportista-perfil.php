@@ -35,7 +35,7 @@
       <a href="javascript:location.reload()"  class="active-nav"><i class="fa fa-user"></i><span>Perfil</span></a>
       <a href="<?= base_url()?>PanelTransportista/Viajes"><i class="fa fa-road"></i><span>Viajes</span></a>
       <a href="<?= base_url()?>PanelTransportista"><i class="fa fa-box"></i><span>Carga</span></a>
-      <a href="transportista-pagos.html"><i class="fa fa-wallet"></i><span>Pagos</span></a>
+      <a href="<?= base_url()?>PanelTransportista/Pagos"><i class="fa fa-wallet"></i><span>Pagos</span></a>
       <a href="<?=base_url()?>PanelTransportista/Contacto" data-menu="menu-settings"><i class="fa fa-question"></i><span>Ayuda</span></a>
       <div class="clear"></div>
   </div>
@@ -44,7 +44,7 @@
         <div data-height="65vh" class="caption">
             <div class="caption-bottom left-15 text-left bottom-60">
                 <!-- <h1 class="color-theme bolder font-40 bottom-10">Nombre</h1> -->
-                <h1 class="color-theme bolder font-40"><?= $perfil->nombre ?></h1>
+                <h1 class="color-theme bolder font-40"><?= $perfil->nombre ?> <?= $perfil->apellidoPaterno ?> <?= $perfil->apellidoMaterno ?></h1>
                 <!-- <p class="color-theme font-12"><i class="fa fa-map-marker right-5 font-10"></i>Detalle 1</p> -->
                 <p class="color-theme bottom-50">
                     Descripción.

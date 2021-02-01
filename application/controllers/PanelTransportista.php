@@ -54,6 +54,8 @@ class PanelTransportista extends CI_Controller {
 	public function posregistro(){
 		$id = intval($this->session->userdata('id'));
 		$data['nombre'] = $nombre = $this->input->post("nombre");
+		$data['apellidoPaterno'] = $nombre = $this->input->post("apellidoPaterno");
+		$data['apellidoMaterno'] = $nombre = $this->input->post("apellidoMaterno");
 		$data['correo'] = $correo = $this->input->post("correo");
 		$data['tel'] = $tel = $this->input->post("tel");
 		$data['curp'] = $curp = $this->input->post("curp");
@@ -249,6 +251,37 @@ class PanelTransportista extends CI_Controller {
 			// code...
 		}else {
 			$this->load->view('transportista/transportista-perfil',$data);
+		}
+	}
+
+	public function Pagos($param = ''){
+		$id = $this->session->userdata('id');
+		$email = $this->session->userdata('email');
+		$user = $this->session->userdata('user');
+		$tipo = $this->session->userdata('tipo');
+		$estado = $this->session->userdata('estado');
+
+		$datos = array(
+			'id' => $id,
+			'email' => $email,
+			'user' => $user,
+			'tipo' => $tipo,
+			'estado' => $estado
+		);
+
+		$fila_user = $this->Ingresar->getLogin($email);
+		$fila_perfil = $this->PerfilTransportista->getDatos($id);
+
+		$data = array(
+			'datosTransportista' => $datos,
+			'datosUsuario' => $fila_user,
+			'perfil' => $fila_perfil
+		);
+
+		if ($param == "algo") {
+			// code...
+		}else {
+			$this->load->view('transportista/transportista-pagos',$data);
 		}
 	}
 

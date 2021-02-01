@@ -34,7 +34,7 @@
 
 	<div class="header header-fixed header-logo-center">
         <a href="index.html" class="header-title">ECMOVE</a>
-		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+		<a href="<?= base_url()?>" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
 	</div>
 
 
@@ -49,9 +49,21 @@
                     </p>
                     <div class="input-style has-icon input-style-1 input-required">
                         <i class="input-icon fa fa-user font-11"></i>
-                        <span>Nombre</span>
+                        <span>Nombres</span>
 
                         <input type="text" placeholder="Nombre" name="name">
+                    </div>
+                    <div class="input-style has-icon input-style-1 input-required">
+                        <i class="input-icon fa fa-user font-11"></i>
+                        <span>Apellido Paterno</span>
+
+                        <input type="text" placeholder="Apellido Paterno" name="apellidoPaterno">
+                    </div>
+                    <div class="input-style has-icon input-style-1 input-required">
+                        <i class="input-icon fa fa-user font-11"></i>
+                        <span>Apellido Materno</span>
+
+                        <input type="text" placeholder="Apellido Materno" name="apellidoMaterno">
                     </div>
                     <div class="input-style has-icon input-style-1 input-required">
                         <i class="input-icon fa fa-id-card font-11"></i>
@@ -88,7 +100,7 @@
 
                     <div class="divider bottom-20"></div>
                     <div class="bottom-20">
-                        <a href="<?php echo base_url(); ?>" class="back-button center-text font-11 color-theme">¿Ya tienes una cuenta? Iniciar sesión.</a>
+                        <a href="<?php echo base_url(); ?>" class="center-text font-11 color-theme">¿Ya tienes una cuenta? Iniciar sesión.</a>
                     </div>
                     <!-- <a href="#" class="back-button button button-icon button-full button-m shadow-large button-round-small font-11 bg-facebook top-30 bottom-0"><i class="fab fa-facebook-f"></i>Register with with Facebook</a>
                     <a href="#" class="back-button button button-icon button-full button-m shadow-large button-round-small font-11 bg-twitter top-10 bottom-40"><i class="fab fa-twitter"></i>Register with Twitter</a>-->

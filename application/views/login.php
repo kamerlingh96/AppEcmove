@@ -60,13 +60,13 @@
                     <i class="input-icon fa fa-user font-11"></i>
                     <span>Correo</span>
 
-                    <input type="email" placeholder="Correo" name="email" value="erik@gmail.com">
+                    <input type="email" placeholder="Correo" name="email" value="">
                 </div>
                 <div class="input-style has-icon input-style-1 input-required">
                     <i class="input-icon fa fa-lock font-11"></i>
                     <span>Contraseña</span>
 
-                    <input type="password" placeholder="Contraseña" name="pass" value="1234">
+                    <input type="password" placeholder="Contraseña" name="pass" value="">
                 </div>
                 <div class="clear"></div>
                 <a href="#" onclick="ejecutarAcceder(event)" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">ACCEDER</a>

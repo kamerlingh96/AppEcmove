@@ -66,13 +66,15 @@ class Register_model extends CI_Model{
     $this->db->insert("empresas",$data2);
   }
 
-  function transportista($data,$curp, $cel=''){
+  function transportista($data,$curp, $cel='',$apellidoPaterno,$apellidoMaterno){
     if($this->db->insert("users",$data)){
       $id=$this->db->insert_id();
       date_default_timezone_set('America/Mexico_City');
       $data2 = array( 'id_user' => $id,
                       'id_empresa' => 0,
                       'nombre' => $data['user'],
+                      'apellidoPaterno' => $apellidoPaterno,
+                      'apellidoMaterno' => $apellidoMaterno,
                       'curp' => $curp,
                       'tel' => $cel,
                       'correo' => $data['email'],

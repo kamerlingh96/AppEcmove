@@ -86,6 +86,18 @@
                     <input type="text" placeholder="Nombre" name="nombre" value="<?= $datosUsuario->user ?>">
                 </div>
                 <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-user font-11"></i>
+                    <span>Apellido Paterno</span>
+
+                    <input type="text" placeholder="Apellido Paterno" name="apellidoPaterno" value="<?= $perfil->apellidoPaterno ?>">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-user font-11"></i>
+                    <span>Apellido Materno</span>
+
+                    <input type="text" placeholder="Apellido Materno" name="apellidoMaterno" value="<?= $perfil->apellidoMaterno ?>">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
                     <i class="input-icon fa fa-id-card font-11"></i>
                     <span>CURP</span>
 
