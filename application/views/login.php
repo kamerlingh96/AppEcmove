@@ -72,16 +72,16 @@
                 <a href="#" onclick="ejecutarAcceder(event)" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">ACCEDER</a>
                 <div class="divider top-30"></div>
 
-                <p class="center-text font-11 under-heading bottom-30 color-highlight">
-                    Crear una cuenta
-                </p>
-              <a href="<?= base_url()?>Register/registroCliente" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">CLIENTE</a>
-              <a href="<?= base_url()?>Register/registroTransportista" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">TRANSPORTISTA</a>
+                <a href="<?= base_url()?>Register/seleccinarRol"><p class="center-text font-11 under-heading bottom-30 color-highlight">
+                    Crear una Cuenta
+                </p></a>
+              <!--<a href="<?= base_url()?>Register/registroCliente" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">CLIENTE</a>
+              <a href="<?= base_url()?>Register/registroTransportista" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">TRANSPORTISTA</a>-->
                 <div class="divider bottom-15"></div>
 
-                <div class="one-half last-column">
+                <!--<div class="one-half last-column">
                     <a href="reestablecer.html" class="text-right font-11 color-theme opacity-50">¿Olvidaste tu contraseña?</a>
-                </div>
+                </div>-->
                 <div class="clear"></div>
               </form>
             </div>

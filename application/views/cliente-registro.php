@@ -82,7 +82,7 @@
 
                     <div class="divider bottom-20"></div>
                     <div class="bottom-20">
-                        <a href="<?php echo base_url(); ?>" class="back-button center-text font-11 color-theme">¿Ya tienes una cuenta? Iniciar sesión.</a>
+                        <a href="<?php echo base_url(); ?>Login" class="back-button center-text font-11 color-theme">¿Ya tienes una cuenta? Iniciar sesión.</a>
                     </div>
                     <!-- <a href="#" class="back-button button button-icon button-full button-m shadow-large button-round-small font-11 bg-facebook top-30 bottom-0"><i class="fab fa-facebook-f"></i>Register with with Facebook</a>
                     <a href="#" class="back-button button button-icon button-full button-m shadow-large button-round-small font-11 bg-twitter top-10 bottom-40"><i class="fab fa-twitter"></i>Register with Twitter</a>-->

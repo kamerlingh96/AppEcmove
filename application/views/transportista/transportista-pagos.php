@@ -46,7 +46,7 @@
                 <a href="#" class="float-right font-11 button button-xs round-small shadow-huge bg-highlight">EDITAR</a>
             </div>
             <div class="caption-bottom bottom-35">
-                <h1 class="center-text color-white fa-4x bolder">$8.178</h1>
+                <h1 class="center-text color-white fa-4x bolder">$0.00</h1>
                 <p class="center-text color-white opacity-70 bottom-0 font-11">Balance Total</p>
             </div>
             <div class="caption-bottom">
@@ -73,24 +73,16 @@
 
                 <div class="shadow-large alert alert-large alert-round-medium bg-green1-dark bottom-30 top-30">
                     <i class="fa fa-check"></i>
-                    <strong class="uppercase ultrabold">Transfer Complete</strong>
-                    <span>You received $200 from John Doe</span>
+                    <strong class="uppercase ultrabold">$0.00</strong>
+                    <span>Ganancia total del mes</span>
                 </div>
                 <div class="shadow-large alert alert-small alert-round-medium bg-blue2-dark bottom-20">
                     <i class="fa fa-upload"></i>
-                    <span>Send $100 to Karla <span class="float-right right-10 font-12 opacity-50">Procesando</span></span>
+                    <span>Retirando $0.00 <span class="float-right right-10 font-12 opacity-50">Procesando</span></span>
                 </div>
                 <div class="shadow-large alert alert-small alert-round-medium bg-green1-dark bottom-20">
                     <i class="fa fa-upload"></i>
-                    <span>Send $14.99 to John <span class="float-right right-10 font-12 opacity-50">En espera</span></span>
-                </div>
-                <div class="shadow-large alert alert-small alert-round-medium bg-yellow1-dark bottom-20">
-                    <i class="fa fa-download"></i>
-                    <span>Receive $500 from Joe <span class="float-right right-10 font-12 opacity-50">Verificado</span></span>
-                </div>
-                <div class="shadow-large alert alert-small alert-round-medium bg-red2-dark">
-                    <i class="fa fa-user"></i>
-                    <span>Withdra $500 to Card <span class="float-right right-10 font-12 opacity-50">Rechazado</span></span>
+                    <span>Retiros del mes $0.00 <span class="float-right right-10 font-12 opacity-50">Listo</span></span>
                 </div>
             </div>
         </div>

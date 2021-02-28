@@ -136,11 +136,11 @@ function generarNuevoEmbarque(){
              <div id="mapdistancia" style="display:none;"></div>
               <div data-height="cover" class="caption ">
                 <div class="caption-center">
-                    <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO A</h1>
+                    <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO DE CARGA</h1>
                     <p class="boxed-text-large under-heading color-white opacity-90 top-10">
                         ¿En dónde pasamos por tu carga?
                     </p>
-                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">LUGAR A</a>
+                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">PUNTO DE CARGA</a>
                 </div>
                 <div class="caption-overlay bg-black opacity-80"></div>
               </div>
@@ -165,11 +165,11 @@ function generarNuevoEmbarque(){
               </div>
               <div data-height="cover" class="caption ">
                 <div class="caption-center">
-                    <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO B</h1>
+                    <h1 class="center-text color-white bolder font-30">ELEGIR PUNTO DE DESTINO</h1>
                     <p class="boxed-text-large under-heading color-white opacity-90 top-10">
                         ¿En dónde pasamos por tu carga?
                     </p>
-                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">LUGAR B</a>
+                    <a href="#" class="show-map button button-m button-center-medium bg-green1-dark button-round-small">DESTINO DE CARGA</a>
                     <br>
                     <a href="#" onclick="cancelarpunto()" class="button button-m button-center-medium bg-highlight button-round-small">CANCELAR</a>
                 </div>
@@ -182,7 +182,7 @@ function generarNuevoEmbarque(){
     <form action="<?=base_url()?>PanelCliente/Embarques/cotizar"  method="post" name="nuevoEmbarque" enctype="multipart/form-data" id="nuevoEmbarque">
       <div id="menu-signup" class="menu menu-box-bottom menu-box-detached round-medium" data-menu-height="450" data-menu-effect="menu-over">
         <div class="content">
-          <h1 class="uppercase ultrabold top-20">Embarque</h1>
+          <h1 class="uppercase ultrabold top-20">Contacto de embarque</h1>
 
 
           <div class="input-style has-icon input-style-1 input-required">
@@ -219,7 +219,7 @@ function generarNuevoEmbarque(){
 
       <div id="menu-signup2" class="menu menu-box-bottom menu-box-detached round-medium" data-menu-height="450" data-menu-effect="menu-over">
         <div class="content">
-          <h1 class="uppercase ultrabold top-20">Embarque</h1>
+          <h1 class="uppercase ultrabold top-20">Contacto de embarque</h1>
           <!-- <h4 class="top-20">Dirección: <span id="direccionInicio">calle zacapu</span></h4> -->
 
           <p><b>Dirección de Embarque: </b><span id="direccionInicio"></span></p>
@@ -255,7 +255,7 @@ function generarNuevoEmbarque(){
 
       <div id="menu-signup3" class="menu menu-box-bottom menu-box-detached round-medium" data-menu-height="450" data-menu-effect="menu-over">
         <div class="content">
-          <h1 class="uppercase ultrabold top-20">Destino</h1>
+          <h1 class="uppercase ultrabold top-20">Contacto de Destino</h1>
 
 
           <div class="input-style has-icon input-style-1 input-required">
@@ -293,7 +293,7 @@ function generarNuevoEmbarque(){
 
       <div id="menu-signup4" class="menu menu-box-bottom menu-box-detached round-medium" data-menu-height="450" data-menu-effect="menu-over">
         <div class="content">
-          <h1 class="uppercase ultrabold top-20">Destino</h1>
+          <h1 class="uppercase ultrabold top-20">Contacto de Destino</h1>
           <!-- <h4 class="top-20">Dirección: <span id="direccionInicio">calle zacapu</span></h4> -->
 
           <p><b>Dirección de Embarque: </b><span id="direccionFin"></span></p>
@@ -325,7 +325,7 @@ function generarNuevoEmbarque(){
 
       <div id="menu-signup5" class="menu menu-box-bottom menu-box-detached round-medium" data-menu-height="450" data-menu-effect="menu-over">
         <div class="content">
-          <h1 class="uppercase ultrabold top-20">Detalles del paquete</h1>
+          <h1 class="uppercase ultrabold top-20">Detalles de la carga</h1>
 
           <div class="" style="display:none;">
             <input type="text" name="tipoMaterial" value="Solido">
@@ -359,7 +359,7 @@ function generarNuevoEmbarque(){
           </div>
 
           <div class="input-style has-icon input-style-1 input-required">
-            <span>Descripción del Paquete</span>
+            <span>¿Necesita algun tipo de embalaje?</span>
 
             <textarea type="text" placeholder="Descripción" name="descripcionPaquete" ></textarea>
           </div>

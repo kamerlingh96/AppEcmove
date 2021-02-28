@@ -17,6 +17,10 @@ public function __construct(){
 		$this->load->view('transportista-registro');
 	}
 
+	public function seleccinarRol(){
+		$this->load->view('selectionrol');
+	}
+
 	public function cliente(){
 		$name = $this->input->post("name");
 		$email = $this->input->post("email");
